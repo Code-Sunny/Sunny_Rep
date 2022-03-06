@@ -1,0 +1,246 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+* li {
+  list-style: none;
+}
+
+header {
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: space-around;
+      -ms-flex-align: space-around;
+          align-items: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header h1 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding: 0 20%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+header nav .weathers {
+  padding: 10px 20px;
+}
+
+header nav .weathers:hover {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+main .song_of_day {
+  height: 40vh;
+  background-image: url("https://images.unsplash.com/photo-1526592840328-f334bd03dd8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-size: cover;
+  background-position: top;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .song_of_day .recommendation {
+  width: 60%;
+  background-color: darkgray;
+  height: 40%;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+main .song_of_day .recommendation:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+}
+
+main .song_of_day .recommendation__row {
+  color: white;
+}
+
+main .song_of_day .recommendation__row:first-child {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+main .song_of_day .recommendation__row:last-child {
+  margin-bottom: 20px;
+}
+
+main .song_of_weather {
+  margin-top: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .song_of_weather .weather__row:first-child {
+  width: 100%;
+  padding: 0 10%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr max-content 1fr;
+      grid-template-columns: 1fr -webkit-max-content 1fr;
+      grid-template-columns: 1fr max-content 1fr;
+  gap: 2vw;
+  margin-bottom: 5vh;
+}
+
+main .song_of_weather .weather__row:first-child .hr {
+  border-bottom: 1px solid lightgray;
+}
+
+main .song_of_weather .weather__row:last-child {
+  width: 100%;
+  padding: 0 10%;
+}
+
+main .song_of_weather .weather__row:last-child ul {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  gap: 1vw;
+}
+
+main .song_of_weather .weather__row:last-child ul li {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 160px 1fr;
+      grid-template-columns: 160px 1fr;
+  border: 1px solid black;
+}
+
+main .song_of_weather .weather__row:last-child ul li .song__rank--img img {
+  max-width: 150px;
+}
+
+main .song_of_weather .weather__row:last-child ul li .song__rank--info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .songs_random {
+  margin-top: 5vh;
+  width: 100%;
+  padding: 0 10%;
+}
+
+main .songs_random .random__row {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr max-content 1fr;
+      grid-template-columns: 1fr -webkit-max-content 1fr;
+      grid-template-columns: 1fr max-content 1fr;
+  gap: 2vw;
+  margin-bottom: 5vh;
+}
+
+main .songs_random .random__row .hr {
+  width: 100%;
+  border-bottom: 1px lightgray solid;
+}
+
+main .songs_random .container {
+  padding: 5vh 3vw;
+  border: 1px solid lightgray;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: space-around;
+      -ms-flex-align: space-around;
+          align-items: space-around;
+}
+
+main .songs_random .container__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+main .songs_random .container__row .box img {
+  max-width: 140px;
+}
+
+main .songs_random .container__row .box span {
+  font-size: .9rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer {
+  height: 20vh;
+  width: 100%;
+  margin-top: 10vh;
+  background-color: #f1f1f1;
+}
+/*# sourceMappingURL=styles.css.map */
