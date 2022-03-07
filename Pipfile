@@ -9,6 +9,7 @@ pymongo = "*"
 python-dotenv = "*"
 requests = "*"
 spotipy = "*"
+pyopenssl = "*"
 
 [dev-packages]
 black = "*"

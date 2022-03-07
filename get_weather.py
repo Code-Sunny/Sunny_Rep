@@ -1,18 +1,19 @@
-from datetime import date
 import requests
-import os
-from dotenv import load_dotenv
-from datetime import date, datetime
+from app import env_variables
+# from datetime import date, datetime
+# base_date = ''.join(str(date.today()).split("-"))
+# base_time = datetime.now().strftime("%H00")
 
-load_dotenv()
+service_key = env_variables["openweather_key"]
+lat = env_variables["lat"]
+lon = env_variables["lon"]
 
-service_key = os.getenv("SERVICE_KEY")
-lat = os.getenv("BASE_LAT")
-lon = os.getenv("BASE_LON")
-base_date = ''.join(str(date.today()).split("-"))
-base_time = datetime.now().strftime("%H00")
-url = 'https://api.openweathermap.org/data/2.5/weather'
-params = {'lat': lat, 'lon': lon, 'units': 'metric', 'lang': 'kr', 'appid': service_key}
 
-response = requests.get(url, params=params)
-print(response.content)
+def call_weather(lat=lat, lon=lon):
+  url = 'https://api.openweathermap.org/data/2.5/weather'
+  params = {'lat': lat, 'lon': lon, 'units': 'metric', 'lang': 'kr', 'appid': service_key}
+  response = requests.get(url, params=params)
+  weather = response.json()["weather"][0]
+  return {'weather_id': weather["id"]}
+
+# print(call_weather())
