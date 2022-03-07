@@ -1,4 +1,5 @@
-function getLocation() {
+export function getWeather() {
+  let weatherInfo = [];
   if (!navigator.geolocation) {
     fetch("/get-weather", {
       method: "POST",
@@ -16,14 +17,16 @@ function getLocation() {
             "Content-type": "application/json",
           },
         })
-          .then((response) => response.json())
-          .then((json) => console.log(json));
+          .then((response) => response.json)
+          .then((json) => {
+            weatherInfo = json;
+            console.log(json);
+          });
       },
       (error) => {
         console.log(error);
       }
     );
   }
+  return weatherInfo;
 }
-
-getLocation();
