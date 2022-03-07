@@ -1,5 +1,5 @@
 export function getWeather() {
-  let weatherInfo = [];
+  let weatherInfo;
   if (!navigator.geolocation) {
     fetch("/get-weather", {
       method: "POST",
