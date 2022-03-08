@@ -16,6 +16,7 @@ env_variables = {
 
 from flask import Flask, jsonify, redirect, render_template, request, session
 import requests
+import json
 from pymongo import MongoClient
 
 # session: 로그인 상태의 유지와 로그아웃 기능을 위해 필요
