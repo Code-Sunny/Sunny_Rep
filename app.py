@@ -4,6 +4,7 @@ load_dotenv()
 
 import os
 
+# BASE_LAT, BASE_LON은 위치정보가 받아지지 않았을 때를 위해 종로구의 좌표를 입력함
 env_variables = {
     "port": os.getenv("PORT"),
     "lat": os.getenv("BASE_LAT"),
@@ -18,7 +19,11 @@ import requests
 from pymongo import MongoClient
 
 # bcrypt: password를 암호화하고, 암호화된 password와 입력된 password를 비교하기 위한 라이브러리
-from bcrypt import checkpw, hashpw
+# checkpw(비교할 암호, 저장된 암호) => True / False
+# hashpw(해싱할 암호, 해싱횟수)
+# gensalt 해싱횟수를 생성하기 위한 함수
+# hashpw(해싱할 암호, gensalt())로 암호화할 수 있다.
+from bcrypt import checkpw, hashpw, gensalt
 
 db_client = MongoClient("localhost", 27017)
 db = db_client.sunny
@@ -61,7 +66,8 @@ def join():
     else:
         # db에 존재하지 않고, 암호가 일치 할 때
         # password를 암호화한다. hashpw(hashing 할 문자열, hashing 횟수)
-        hashed_password = hashpw(password, 5)
+        password = password.encode("utf-8")
+        hashed_password = hashpw(password, gensalt())
         # db에 저장할 object 생성
         doc = {"username": username, "password": hashed_password}
         db.sunny.insert_one(doc)
@@ -78,7 +84,7 @@ def login():
     if not user:
         # 존재하지 않는 user
         return jsonify({"ok": False, "err": "존재하지 않는 사용자명입니다."})
-    elif password != checkpw(password, user["password"]):
+    elif not checkpw(password.encode('utf-8'), user["password"]):
         # 입력된 password를 hash했을 때 저장된, hashing 된 password와 일치하지 않을 때
         return jsonify({"ok": False, "err": "잘못된 비밀번호입니다."})
     else:
