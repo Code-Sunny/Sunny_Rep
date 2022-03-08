@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href={{ url_for('static', filename='css/styles.css')}} />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>오늘의 코딩은 맑음</h1>
+      <nav>
+        <div class="weathers">Today's</div>
+        <div class="weathers">Sunny</div>
+        <div class="weathers">Cloudy</div>
+        <div class="weathers">Rainy</div>
+        <div class="weathers">Snowy</div>
+      </nav>
+    </header>
+    <main>
+      <section class="song_of_day">
+        <div class="recommendation">
+          <div class="recommendation__row">오늘의 날씨는 "맑음"입니다.</div>
+          <div class="recommendation__row">
+            "맑음"에 어울리는 노래를 추천합니다.
+          </div>
+        </div>
+      </section>
+      <section class="song_of_weather">
+        <div class="weather__row">
+          <div class="hr"></div>
+          <h3>"맑음"의 노래 순위</h3>
+          <div class="hr"></div>
+        </div>
+        <div class="weather__row">
+          <ul class="songs__list">
+            <li class="songs__rank">
+              <div class="song__rank__column">
+                <div class="song__rank--img">
+                  <img src="/static/samples/albumart.jpg" alt="albumart" />
+                </div>
+              </div>
+              <div class="song__rank__column">
+                <div class="song__rank--info">
+                  <div class="song__rank--rank">1</div>
+                  <div class="song__info--title">그래서 그래(feat. 윤하)</div>
+                  <div class="song__info--artist">Epik High</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="songs_random">
+        <div class="random__row">
+          <div class="hr"></div>
+          <h3>랜덤 추천곡</h3>
+          <div class="hr"></div>
+        </div>
+        <div class="container">
+          <div class="container__row">
+            <div class="box">
+              <div class="box__row">
+                <img src="/static/samples/albumart.jpg" alt="albumart" />
+              </div>
+              <div class="box__row">
+                <span>그래서그래 / Epik High</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+    <div class="modal__popup"></div>
+    <script type="module" src={{ url_for('static', filename='js/App.js') }}></script>
+  </body>
+</html>
