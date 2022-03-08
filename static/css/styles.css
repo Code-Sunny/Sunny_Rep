@@ -1,0 +1,302 @@
+/* ---------- header ---------- */
+.header {
+    padding: 2vh 0 1vh 0;
+    text-align: center;
+    position: fixed;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/* 우축 상단 현재 위치, 기온, 날씨 */
+.header p {
+    text-align: end;
+    margin-right: 2%;
+}
+.header span {
+    margin: 0.3%;
+}
+
+/* 헤더 제목 */
+.header h1 {
+    font-weight: 700;
+    margin: 4vh;
+}
+
+/* 날씨별 나브바 */
+.navbar {
+    margin: 0 30% 0 30%;
+    font-style: italic;
+}
+
+#nav_color:hover {
+    color: orange;
+}
+
+
+/* ---------------------Banner-------------------- */
+.banner {
+    margin-top: 12%;
+    position: relative;
+    text-align: center;
+    padding: 7% 0;
+}
+
+/* 페이지 마다 배너 이미지 바꾸기 위해서 일단 각 html로 옮김 */
+/*.banner:after {*/
+/*    content: "";*/
+/*    background-image: url("../../static/images/rainy2.jpg");*/
+/*    background-position: center;*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    opacity: 1.0;*/
+/*    z-index: -1;*/
+/*}*/
+
+.banner div {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    padding: 2% 5%;
+    border-radius: 5px;
+}
+
+.banner div h2 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2.5em;
+    margin: 0 0 0.65em 0;
+}
+
+.banner div p {
+    color: #fff;
+    padding: 0;
+    font-style: normal;
+    margin: 0;
+    font-size: 1.5em;
+}
+.banner span {
+    color: cornflowerblue;
+}
+
+/* --------------------------chart(날씨별 순위)---------------------- */
+.chart_title {
+    margin: 9em 5em 5em 5em;
+    text-align: center;
+}
+
+.chart_title h3 {
+    font-size: 2em;
+    color: dimgrey;
+}
+
+.chart_title p {
+    color: dimgrey;
+    font-style: italic;
+}
+
+.chart_title span {
+    color: cadetblue;
+}
+
+.chart {
+    margin: 5% 11% 5% 11%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.chart_cloumn {
+    margin: 0.8em;
+}
+
+.chart_list {
+    border: 2px solid slategray;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 5em 2fr 3fr 3em 4em;
+    padding: 0.5em;
+}
+
+.chart_list img {
+    width: 5.5em;
+    height: 5.5em;
+    display: block;
+    align-items: center;
+}
+
+.chart_list_detail {
+    margin: 0.5em 0 0 1em;
+}
+
+.song_title {
+    margin-top: 2em;
+    font-size: 0.9em;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 15em
+}
+
+.artist {
+    font-size: 0.9em;
+}
+
+.weather_icon {
+    margin: 0.5em 0 0.5em 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.weather_icon button {
+    background-color: white;
+    border: none;
+    margin: 0.8em;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.weather_icon img {
+    width: 2em;
+    height: 2em;
+}
+
+.play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    border: none;
+    text-decoration: none;
+    background-color: lightslategray;
+    color: white;
+    padding: 0.3em;
+}
+
+.play a:hover {
+    background-color: goldenrod;
+    text-decoration-line: none;
+    color: white;
+}
+
+.rank {
+    text-align: end;
+    font-size: 2em;
+    font-weight: 900;
+    color: dimgrey;
+}
+
+/* -----------------------random(날씨별 추천곡)------------------------- */
+.random_title {
+    margin: 9em 5em 5em 5em;
+    text-align: center;
+}
+
+.random_title h3 {
+    font-size: 2em;
+    color: dimgrey;
+}
+
+.random_title p {
+    color: dimgrey;
+    font-style: italic;
+}
+
+.random_title span {
+    color: cadetblue;
+}
+
+.random {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 5% 10% 5% 10%;
+}
+
+.random_list {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.random_list img {
+    width: 12em;
+    cursor: pointer;
+}
+
+/* --------------------footer--------------------- */
+.footer {
+    background-color: #5F9EA0;
+}
+
+.project_title {
+    color: white;
+    font-size: 1em;
+    margin: 5em 0 0 7em;
+    padding-top: 1em;
+}
+
+.team_name {
+    color: white;
+    font-size: 0.8em;
+    margin: 0 0 0 9em;
+}
+
+.copyright {
+    color: white;
+    font-size: 0.9em;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+/* ------------ 미디어 쿼리(반응형) ---------------- */
+@media all and (max-width: 1440px) {
+    .navbar {
+        margin: 0 20% 0 20%;
+        font-style: italic;
+    }
+
+    .banner {
+        margin-top: 14.8%;
+    }
+
+    .chart {
+        margin: 5% 2% 5% 2%;
+    }
+
+    .chart_list {
+        grid-template-columns: 5em 10em 18em 3em 3em;
+    }
+}
+
+@media all and (max-width: 1024px) {
+    .navbar {
+        margin: 0 10% 0 10%;
+        font-style: italic;
+    }
+
+    .banner {
+        margin-top: 30%;
+    }
+
+    .chart {
+        margin: 5% 11% 5% 11%;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .chart_list {
+        grid-template-columns: 5em 2fr 3fr 3em 4em;
+    }
+}
