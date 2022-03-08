@@ -1,246 +1,304 @@
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+
+/* ---------- header ---------- */
+.header {
+    padding: 2vh 0 1vh 0;
+    text-align: center;
+    position: fixed;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
 }
 
-* li {
-  list-style: none;
+/* 우축 상단 현재 위치, 기온, 날씨 */
+.header p {
+    text-align: end;
+    margin-right: 2%;
+}
+.header span {
+    margin: 0.3%;
 }
 
-header {
-  height: 20vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: space-around;
-      -ms-flex-align: space-around;
-          align-items: space-around;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+/* 헤더 제목 */
+.header h1 {
+    font-weight: 700;
+    margin: 4vh;
 }
 
-header h1 {
-  text-align: center;
-  margin-bottom: 15px;
+/* 날씨별 나브바 */
+.navbar {
+    margin: 0 30% 0 30%;
+    font-style: italic;
 }
 
-header nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  padding: 0 20%;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+#nav_color:hover {
+    color: orange;
 }
 
-header nav .weathers {
-  padding: 10px 20px;
+
+/* ---------------------Banner-------------------- */
+.banner {
+    margin-top: 12%;
+    position: relative;
+    text-align: center;
+    padding: 7% 0;
 }
 
-header nav .weathers:hover {
-  background-color: red;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+/* 페이지 마다 배너 이미지 바꾸기 위해서 일단 각 html로 옮김 */
+/*.banner:after {*/
+/*    content: "";*/
+/*    background-image: url("../../static/images/rainy2.jpg");*/
+/*    background-position: center;*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    opacity: 1.0;*/
+/*    z-index: -1;*/
+/*}*/
+
+.banner div {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    padding: 2% 5%;
+    border-radius: 5px;
 }
 
-main .song_of_day {
-  height: 40vh;
-  background-image: url("https://images.unsplash.com/photo-1526592840328-f334bd03dd8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
-  background-size: cover;
-  background-position: top;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.banner div h2 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2.5em;
+    margin: 0 0 0.65em 0;
 }
 
-main .song_of_day .recommendation {
-  width: 60%;
-  background-color: darkgray;
-  height: 40%;
-  border-radius: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+.banner div p {
+    color: #fff;
+    padding: 0;
+    font-style: normal;
+    margin: 0;
+    font-size: 1.5em;
+}
+.banner span {
+    color: cornflowerblue;
 }
 
-main .song_of_day .recommendation:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-  cursor: pointer;
+/* --------------------------chart(날씨별 순위)---------------------- */
+.chart_title {
+    margin: 9em 5em 5em 5em;
+    text-align: center;
 }
 
-main .song_of_day .recommendation__row {
-  color: white;
+.chart_title h3 {
+    font-size: 2em;
+    color: dimgrey;
 }
 
-main .song_of_day .recommendation__row:first-child {
-  margin-top: 20px;
-  font-size: 1.5rem;
-  font-weight: 800;
+.chart_title p {
+    color: dimgrey;
+    font-style: italic;
 }
 
-main .song_of_day .recommendation__row:last-child {
-  margin-bottom: 20px;
+.chart_title span {
+    color: cadetblue;
 }
 
-main .song_of_weather {
-  margin-top: 5vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.chart {
+    margin: 5% 11% 5% 11%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-main .song_of_weather .weather__row:first-child {
-  width: 100%;
-  padding: 0 10%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr max-content 1fr;
-      grid-template-columns: 1fr -webkit-max-content 1fr;
-      grid-template-columns: 1fr max-content 1fr;
-  gap: 2vw;
-  margin-bottom: 5vh;
+.chart_cloumn {
+    margin: 0.8em;
 }
 
-main .song_of_weather .weather__row:first-child .hr {
-  border-bottom: 1px solid lightgray;
+.chart_list {
+    border: 2px solid slategray;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 5em 2fr 3fr 3em 4em;
+    padding: 0.5em;
 }
 
-main .song_of_weather .weather__row:last-child {
-  width: 100%;
-  padding: 0 10%;
+.chart_list img {
+    width: 5.5em;
+    height: 5.5em;
+    display: block;
+    align-items: center;
 }
 
-main .song_of_weather .weather__row:last-child ul {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: auto;
-      grid-template-rows: auto;
-  gap: 1vw;
+.chart_list_detail {
+    margin: 0.5em 0 0 1em;
 }
 
-main .song_of_weather .weather__row:last-child ul li {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 160px 1fr;
-      grid-template-columns: 160px 1fr;
-  border: 1px solid black;
+.song_title {
+    margin-top: 2em;
+    font-size: 0.9em;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 15em
 }
 
-main .song_of_weather .weather__row:last-child ul li .song__rank--img img {
-  max-width: 150px;
+.artist {
+    font-size: 0.9em;
 }
 
-main .song_of_weather .weather__row:last-child ul li .song__rank--info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.weather_icon {
+    margin: 0.5em 0 0.5em 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
-main .songs_random {
-  margin-top: 5vh;
-  width: 100%;
-  padding: 0 10%;
+.weather_icon button {
+    background-color: white;
+    border: none;
+    margin: 0.8em;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
-main .songs_random .random__row {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr max-content 1fr;
-      grid-template-columns: 1fr -webkit-max-content 1fr;
-      grid-template-columns: 1fr max-content 1fr;
-  gap: 2vw;
-  margin-bottom: 5vh;
+.weather_icon img {
+    width: 2em;
+    height: 2em;
 }
 
-main .songs_random .random__row .hr {
-  width: 100%;
-  border-bottom: 1px lightgray solid;
+.play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-main .songs_random .container {
-  padding: 5vh 3vw;
-  border: 1px solid lightgray;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: space-around;
-      -ms-flex-align: space-around;
-          align-items: space-around;
+.button {
+    border: none;
+    text-decoration: none;
+    background-color: lightslategray;
+    color: white;
+    padding: 0.3em;
 }
 
-main .songs_random .container__row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+.play a:hover {
+    background-color: goldenrod;
+    text-decoration-line: none;
+    color: white;
 }
 
-main .songs_random .container__row .box img {
-  max-width: 140px;
+.rank {
+    text-align: end;
+    font-size: 2em;
+    font-weight: 900;
+    color: dimgrey;
 }
 
-main .songs_random .container__row .box span {
-  font-size: .9rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+/* -----------------------random(날씨별 추천곡)------------------------- */
+.random_title {
+    margin: 9em 5em 5em 5em;
+    text-align: center;
 }
 
-footer {
-  height: 20vh;
-  width: 100%;
-  margin-top: 10vh;
-  background-color: #f1f1f1;
+.random_title h3 {
+    font-size: 2em;
+    color: dimgrey;
 }
-/*# sourceMappingURL=styles.css.map */
+
+.random_title p {
+    color: dimgrey;
+    font-style: italic;
+}
+
+.random_title span {
+    color: cadetblue;
+}
+
+.random {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 5% 10% 5% 10%;
+}
+
+.random_list {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.random_list img {
+    width: 12em;
+    cursor: pointer;
+}
+
+/* --------------------footer--------------------- */
+.footer {
+    background-color: #5F9EA0;
+}
+
+.project_title {
+    color: white;
+    font-size: 1em;
+    margin: 5em 0 0 7em;
+    padding-top: 1em;
+}
+
+.team_name {
+    color: white;
+    font-size: 0.8em;
+    margin: 0 0 0 9em;
+}
+
+.copyright {
+    color: white;
+    font-size: 0.9em;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+/* ------------ 미디어 쿼리(반응형) ---------------- */
+@media all and (max-width: 1440px) {
+    .navbar {
+        margin: 0 20% 0 20%;
+        font-style: italic;
+    }
+
+    .banner {
+        margin-top: 14.8%;
+    }
+
+    .chart {
+        margin: 5% 2% 5% 2%;
+    }
+
+    .chart_list {
+        grid-template-columns: 5em 10em 18em 3em 3em;
+    }
+}
+
+@media all and (max-width: 1024px) {
+    .navbar {
+        margin: 0 10% 0 10%;
+        font-style: italic;
+    }
+
+    .banner {
+        margin-top: 30%;
+    }
+
+    .chart {
+        margin: 5% 11% 5% 11%;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .chart_list {
+        grid-template-columns: 5em 2fr 3fr 3em 4em;
+    }
+}
+

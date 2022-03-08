@@ -1,79 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href={{ url_for('static', filename='css/styles.css')}} />
-    <title>Document</title>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <title>title</title>
+    <style>
+      .wrap {
+        width: 100%;
+        text-align: center;
+      }
+      .box {
+        display: none;
+      }
+      .music-box-img {
+        width: 300px;
+        height: 300px;
+      }
+      .music-box-title {
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      .music-box-artist {
+        font-weight: bold;
+        margin-bottom: 40px;
+      }
+      .today-wether-icon {
+        margin-bottom: 30px;
+      }
+      .another-wether-icon {
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+      .btn01 {
+        margin-right: 10px;
+      }
+      .btn02 {
+        margin-left: 10px;
+      }
+    </style>
+    <script>
+      function openclose() {
+        let status = $("#music-box").css("display");
+        if (status == "block") {
+          $("#music-box").hide();
+          $("#btn-posting-box").text("추천 받기");
+        } else {
+          $("#music-box").show();
+          $("#btn-posting-box").text("닫기");
+        }
+      }
+
+      // function weather() {
+      //     $.ajax({
+      //         type: "GET",
+      //         url: "",
+      //         data: {},
+      //         success: function (response) {
+      //             let rows = response[''];
+      //             $('#now_local').append(rows);
+      //         }
+      //     })
+      // }
+      //
+      // function weather() {
+      //     $.ajax({
+      //         type: "GET",
+      //         url: "",
+      //         data: {},
+      //         success: function (response) {
+      //             let rows = response[''];
+      //             $('#now_temperature').append(rows);
+      //         }
+      //     })
+      // }
+      //
+      // function listing() {
+      //     $.ajax({
+      //         type: "GET",
+      //         url: "",
+      //         data: {},
+      //         success: function (response) {
+      //             let rows = response['']
+      //             for (let i = 0; i < rows.length; i++) {
+      //                 let  = rows[i]['']
+      //                 let  = rows[i]['']
+      //                 let  = rows[i]['']
+      //
+      //                 let temp_html = `<div class="music-box-in">
+      //                                     <img class="music-box-img" src="${}" alt="Card image cap">
+      //                                     <p class="music-box-title">${}</p>
+      //                                     <p class="music-box-artist">${}</p>
+      //
+      //                                 </div>`
+      //                $('#music-box').append(temp_html);
+      //             }
+      //         }
+      //     })
+      // }
+    </script>
   </head>
+
   <body>
-    <header>
-      <h1>오늘의 코딩은 맑음</h1>
-      <nav>
-        <div class="weathers">Today's</div>
-        <div class="weathers">Sunny</div>
-        <div class="weathers">Cloudy</div>
-        <div class="weathers">Rainy</div>
-        <div class="weathers">Snowy</div>
-      </nav>
-    </header>
-    <main>
-      <section class="song_of_day">
-        <div class="recommendation">
-          <div class="recommendation__row">오늘의 날씨는 "맑음"입니다.</div>
-          <div class="recommendation__row">
-            "맑음"에 어울리는 노래를 추천합니다.
+    <div class="wrap">
+      <div class="weather">
+        <h1 class="main-text">오늘의 날씨에</h1>
+        <h1 class="main-text">어울리는 음악이 뭐야?</h1>
+        <p class="local">위치 : <span id="now_local">서울</span></p>
+        <p class="temperature">기온 : <span id="now_temperature">16°C</span></p>
+        <p class="btn00">
+          <a
+            onclick="openclose()"
+            id="btn-posting-box"
+            class="btn btn-dark btn-lg"
+            href="#"
+            role="button"
+            >추천 받기</a
+          >
+        </p>
+      </div>
+
+      <div class="box" id="music-box">
+        <div class="music-box-in">
+          <img
+            class="music-box-img"
+            src="https://mountainholic.com/data/file/gallery/1794564802_GrmVxJz4_4f69963f2aec263bf84140cbb0de9d5dd61fc60a.png"
+            alt="Card image cap"
+          />
+          <p id="song-title" class="music-box-title">에잇</p>
+          <p class="music-box-artist">가수 이름</p>
+          <span>오늘의 날씨에는 이런 노래,</span>
+          <span class="today-wether-icon">
+            <a href="https://www.naver.com/" class="wether-icon-01">좋아요</a>
+          </span>
+          <div class="another-wether-icon">
+            <p>다른 날씨에 더 어울릴까요?</p>
+            <a href="https://www.naver.com/" class="wether-icon-02">#흐림</a>
+            <a href="https://www.naver.com/" class="wether-icon-03">#비</a>
+            <a href="https://www.naver.com/" class="wether-icon-04">#눈</a>
           </div>
         </div>
-      </section>
-      <section class="song_of_weather">
-        <div class="weather__row">
-          <div class="hr"></div>
-          <h3>"맑음"의 노래 순위</h3>
-          <div class="hr"></div>
-        </div>
-        <div class="weather__row">
-          <ul class="songs__list">
-            <li class="songs__rank">
-              <div class="song__rank__column">
-                <div class="song__rank--img">
-                  <img src="/static/samples/albumart.jpg" alt="albumart" />
-                </div>
-              </div>
-              <div class="song__rank__column">
-                <div class="song__rank--info">
-                  <div class="song__rank--rank">1</div>
-                  <div class="song__info--title">그래서 그래(feat. 윤하)</div>
-                  <div class="song__info--artist">Epik High</div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section class="songs_random">
-        <div class="random__row">
-          <div class="hr"></div>
-          <h3>랜덤 추천곡</h3>
-          <div class="hr"></div>
-        </div>
-        <div class="container">
-          <div class="container__row">
-            <div class="box">
-              <div class="box__row">
-                <img src="/static/samples/albumart.jpg" alt="albumart" />
-              </div>
-              <div class="box__row">
-                <span>그래서그래 / Epik High</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer></footer>
-    <div class="modal__popup"></div>
-    <script type="module" src={{ url_for('static', filename='js/App.js') }}></script>
+        <span class="btn01">
+          <a
+            href="https://music.youtube.com/"
+            target="_blank"
+            class="btn btn-dark btn-lg active"
+            role="button"
+            aria-pressed="true"
+            >지금 재생</a
+          >
+        </span>
+        <span class="btn02">
+          <a
+            href="https://music.youtube.com/"
+            target="_blank"
+            class="btn btn-dark btn-lg active"
+            role="button"
+            aria-pressed="true"
+            >다른 노래 추천</a
+          >
+        </span>
+  
+        <input id="Sunny-btn" type="button" value="Sunny"></input>
+        <input id="Cloudy-btn" type="button" value="Cloudy"></input>
+        <input id="Rainy-btn" type="button" value="Rainy"></input>
+        <input id="Snowy-btn" type="button" value="Snowy"></input>
+      </div>
+    </div>
   </body>
 </html>
