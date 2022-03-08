@@ -16,6 +16,8 @@ env_variables = {
 from flask import Flask, jsonify, redirect, render_template, request
 import requests
 from pymongo import MongoClient
+
+# bcrypt: password를 암호화하고, 암호화된 password와 입력된 password를 비교하기 위한 라이브러리
 from bcrypt import checkpw, hashpw
 
 db_client = MongoClient("localhost", 27017)
@@ -40,17 +42,24 @@ def main():
 
 @app.route("/join", methods=["POST"])
 def join():
+    # form에서 전송된 username과 password, password2
     data = request.form
     username = data["username"]
     password = data["password"]
     password2 = data["password2"]
+    # db에 username을 가진 유저를 찾는다.
     existing_user = db.sunny.find_one({"username": username})
     if existing_user:
+        # db에 이미 존재하는 username일 경우
         return jsonify({"ok": False, "err": "이미 존재하는 사용자명입니다."})
     elif password != password2:
+        # db에 존재하지 않으나 입력된 암호 둘이 동일하지 않을 경우
         return jsonify({"ok": False, "err": "패스워드가 동일하지 않습니다."})
     else:
+        # db에 존재하지 않고, 암호가 일치 할 때
+        # password를 암호화한다. hashpw(hashing 할 문자열, hashing 횟수)
         hashed_password = hashpw(password, 5)
+        # db에 저장할 object 생성
         doc = {"username": username, "password": hashed_password}
         db.sunny.insert_one(doc)
         return jsonify({"ok": True})
@@ -61,32 +70,44 @@ def login():
     data = request.form
     username = data["username"]
     password = data["password"]
+    # db에서 username으로 검색
     user = db.sunny.find_one({"username": username})
     if not user:
+        # 존재하지 않는 user
         return jsonify({"ok": False, "err": "존재하지 않는 사용자명입니다."})
     elif password != checkpw(password, user["password"]):
+        # 입력된 password를 hash했을 때 저장된, hashing 된 password와 일치하지 않을 때
         return jsonify({"ok": False, "err": "잘못된 비밀번호입니다."})
     else:
-        return redirect("/", 200)
+        # 로그인을 완료하고 첫 페이지로 돌아간다.
+        return redirect("/")
 
 
 @app.route("/get-weather", methods=["POST"])
 def weather_info():
-    # position info를 담아서 보내는 걸 실행하도록 해야 한다.
+    # frontend에서 json형식으로 보낸 위치정보를 받는다.
     pos = request.json
     lat = pos["lat"]
     lon = pos["lon"]
     print(pos)
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
+        # 위치정보를 요청할 parameters에 담는다.
         "lat": lat or base_lat,
         "lon": lon or base_lon,
+        # 단위를 미터법에 맞게 받는다 (셀시우스)
         "units": "metric",
+        # 날씨 정보를 우리말로 받는다. ex) "맑음", "구름" 등
         "lang": "kr",
+        # openweather에 요청할 때 필요한 api_key를 담는다.
         "appid": service_key,
     }
+    # requsets모듈을 - get method, url, params를 담아 요청
     response = requests.get(url, params=params)
+    # 받은 response를 response.json()처리하여 json파일을 뽑고
+    # weather 정보만 뽑아낸다
     weather = response.json()["weather"]
+    # 뽑아낸 weather 정보를 frontend로 보낸다
     return jsonify({"weather": weather})
 
 
