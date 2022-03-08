@@ -32,6 +32,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    # ip주소를 따는 법
+    # ip_address = request.remote_addr
+    # print(ip_address)
     return render_template("index.html")
 
 
