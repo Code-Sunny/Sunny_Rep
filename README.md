@@ -2,6 +2,7 @@
 #fasjkfhasj
 =======
 # Sunny_Rep
+<<<<<<< HEAD
 
 제가 궁금한 것은
 
@@ -18,3 +19,6 @@ main에 적용을 시켜 버리면
 바뀌는 건지가 궁금해졌어요!
 
 >>>>>>> 4042bd591ee4ff5975c2a1394f2eb5120d4ee646
+=======
+Hello 1team!!
+>>>>>>> 24dba46eb345b2afa2f45c7a5fb69dd0ea7a7be3
