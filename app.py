@@ -16,7 +16,8 @@ env_variables = {
 
 from flask import Flask, jsonify, redirect, render_template, request, session
 import requests
-import json
+
+# import json
 from pymongo import MongoClient
 
 # session: 로그인 상태의 유지와 로그아웃 기능을 위해 필요
@@ -40,12 +41,14 @@ base_lon = env_variables["lon"]
 app = Flask(__name__)
 app.secret_key = os.getenv("APP_SECRET")
 
+
 @app.route("/")
 def home():
     # ip주소를 따는 법
     # ip_address = request.remote_addr
-    # print(ip_address)
+    # print(session)
     return render_template("index.html")
+
 
 @app.route("/j")
 def j():
@@ -54,13 +57,13 @@ def j():
 
 @app.route("/main")
 def main():
-    return render_template("main.html")
+    return render_template("login.html")
 
 
 @app.route("/join", methods=["POST"])
 def join():
     # form에서 전송된 username과 password, password2
-    if session["username"]:
+    if "username" in session:
         return redirect("/", 403)
     data = request.form
     username = data["username"]
@@ -87,8 +90,9 @@ def join():
 
 @app.route("/login", methods=["POST"])
 def login():
-    if session["username"]:
-        return redirect("/", 403)
+    if "username" in session:
+        if session["username"]:
+            return redirect("/", 403)
     data = request.form
     username = data["username"]
     password = data["password"]
@@ -97,13 +101,14 @@ def login():
     if not user:
         # 존재하지 않는 user
         return jsonify({"ok": False, "err": "존재하지 않는 사용자명입니다."})
-    elif not checkpw(password.encode('utf-8'), user["password"]):
+    elif not checkpw(password.encode("utf-8"), user["password"]):
         # 입력된 password를 hash했을 때 저장된, hashing 된 password와 일치하지 않을 때
         return jsonify({"ok": False, "err": "잘못된 비밀번호입니다."})
     else:
         session["username"] = username
         # 로그인을 완료하고 첫 페이지로 돌아간다.
         return redirect("/", 200)
+
 
 @app.route("/logout", methods=["GET"])
 def logout():

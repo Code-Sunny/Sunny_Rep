@@ -1,23 +1,29 @@
-from spotify_auth import sp
+# from app import env_variables
+from dotenv import load_dotenv
 
-# Searth
-# search_str = "윤하"
-# result = sp.search(search_str)
-# items = result["tracks"]["items"]
+load_dotenv()
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import os
 
-# for item in items:
-#     album = item["album"]
-#     artist = album["artists"][0]["name"]
-#     image = album["images"][0]["url"]
-#     album_title = album["name"]
-#     print(artist, album_title)
-#     print(image, "\n")
+client_id = os.getenv("SPOTIFY_CLIENT_ID")
+client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
 
-# # Show album
-urn = "spotify:artist:6GwM5CHqhWXzG3l5kzRSAS"
-response = sp.artist_albums(urn)
+auth_manager = SpotifyClientCredentials(
+    client_id=client_id, client_secret=client_secret
+)
 
-items = response["items"]
+sp = spotipy.Spotify(auth_manager=auth_manager)
+
+# genres
+# response = sp.recommendation_genre_seeds()["genres"]
+# print(len(response), response)
+
+# search
+response = sp.search("artist:IU", limit=10, market="KR", type="track")
+items = response["tracks"]["items"]
 
 for item in items:
-    print(item["name"])
+    artist = item["artists"][0]["name"]
+    title = item["name"]
+    print(title, "/ ", artist)
