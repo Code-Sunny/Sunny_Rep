@@ -14,9 +14,13 @@ env_variables = {
     "spotify_secret": os.getenv("SPOTIFY_CLIENT_SECRET"),
 }
 
-from flask import Flask, jsonify, redirect, render_template, request
+from flask import Flask, jsonify, redirect, render_template, request, session
 import requests
 from pymongo import MongoClient
+
+# session: 로그인 상태의 유지와 로그아웃 기능을 위해 필요
+# session을 이용하여 로그인 된 유저가 새로고침을 했을 때 다시 로그인 하는 것을 방지하고
+# 로그인 된 유저가 로그인/회원가입에 접근하는 것을 막을 수 있다.
 
 # bcrypt: password를 암호화하고, 암호화된 password와 입력된 password를 비교하기 위한 라이브러리
 # checkpw(비교할 암호, 저장된 암호) => True / False
@@ -33,7 +37,7 @@ base_lat = env_variables["lat"]
 base_lon = env_variables["lon"]
 
 app = Flask(__name__)
-# app.secret_key = os.getenv("APP_SECRET")
+app.secret_key = os.getenv("APP_SECRET")
 
 @app.route("/")
 def home():
@@ -55,6 +59,8 @@ def main():
 @app.route("/join", methods=["POST"])
 def join():
     # form에서 전송된 username과 password, password2
+    if session["username"]:
+        return redirect("/", 403)
     data = request.form
     username = data["username"]
     password = data["password"]
@@ -75,11 +81,13 @@ def join():
         # db에 저장할 object 생성
         doc = {"username": username, "password": hashed_password}
         db.users.insert_one(doc)
-        return jsonify({"ok": True})
+        return redirect("/", 201)
 
 
 @app.route("/login", methods=["POST"])
 def login():
+    if session["username"]:
+        return redirect("/", 403)
     data = request.form
     username = data["username"]
     password = data["password"]
@@ -92,7 +100,17 @@ def login():
         # 입력된 password를 hash했을 때 저장된, hashing 된 password와 일치하지 않을 때
         return jsonify({"ok": False, "err": "잘못된 비밀번호입니다."})
     else:
+        session["username"] = username
         # 로그인을 완료하고 첫 페이지로 돌아간다.
+        return redirect("/", 200)
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    if not session["username"]:
+        return redirect("/", 403)
+    else:
+        # session을 제거한다.
+        session.clear()
         return redirect("/")
 
 
