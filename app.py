@@ -33,7 +33,7 @@ base_lat = env_variables["lat"]
 base_lon = env_variables["lon"]
 
 app = Flask(__name__)
-
+# app.secret_key = os.getenv("APP_SECRET")
 
 @app.route("/")
 def home():
@@ -41,6 +41,10 @@ def home():
     # ip_address = request.remote_addr
     # print(ip_address)
     return render_template("index.html")
+
+@app.route("/j")
+def j():
+    return render_template("join.html")
 
 
 @app.route("/main")
@@ -56,7 +60,7 @@ def join():
     password = data["password"]
     password2 = data["password2"]
     # db에 username을 가진 유저를 찾는다.
-    existing_user = db.sunny.find_one({"username": username})
+    existing_user = db.users.find_one({"username": username})
     if existing_user:
         # db에 이미 존재하는 username일 경우
         return jsonify({"ok": False, "err": "이미 존재하는 사용자명입니다."})
@@ -70,7 +74,7 @@ def join():
         hashed_password = hashpw(password, gensalt())
         # db에 저장할 object 생성
         doc = {"username": username, "password": hashed_password}
-        db.sunny.insert_one(doc)
+        db.users.insert_one(doc)
         return jsonify({"ok": True})
 
 
@@ -80,7 +84,7 @@ def login():
     username = data["username"]
     password = data["password"]
     # db에서 username으로 검색
-    user = db.sunny.find_one({"username": username})
+    user = db.users.find_one({"username": username})
     if not user:
         # 존재하지 않는 user
         return jsonify({"ok": False, "err": "존재하지 않는 사용자명입니다."})
