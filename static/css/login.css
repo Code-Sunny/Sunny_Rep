@@ -2,16 +2,27 @@
     list-style: none;
     text-decoration: none;
     border-collapse: collapse;
-    margin: 0px;
-    padding: 0px;
     font-family: 'Noto Sans KR', sans-serif;
     /*text-align: center;*/
 }
 
 body {
     background: #fff;
-    margin: 0px;
-    padding: 0px;
+}
+
+.move_btn {
+    margin-top: 1em;
+    text-align: end;
+}
+
+.move_btn a {
+    text-decoration-line: none;
+    color: dimgrey;
+    font-size: 25px;
+}
+
+.move_btn a:hover {
+    color: orange;
 }
 
 .login_title {
