@@ -23,6 +23,8 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/a73607bda8.js" crossorigin="anonymous"></script>
+
     <title>오늘의 코딩은 맑음</title>
 
     <style>
@@ -114,7 +116,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">1</div>
                   </div>
@@ -136,7 +138,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">2</div>
                   </div>
@@ -158,7 +160,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">3</div>
                   </div>
@@ -180,7 +182,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">4</div>
                   </div>
@@ -202,7 +204,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">5</div>
                   </div>
@@ -226,7 +228,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">6</div>
                   </div>
@@ -248,7 +250,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">7</div>
                   </div>
@@ -270,7 +272,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">8</div>
                   </div>
@@ -292,7 +294,7 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">9</div>
                   </div>
@@ -314,19 +316,28 @@
                           <button type="button" onclick=""><img src="../static/images/picto_snowy.png" alt="snowy"/></button>
                       </div>
                       <div class="play">
-                          <a href="#" class="button">PLAY</a>
+                          <a href="#" class="button"><i class="fas fa-caret-square-right"></i></a>
                       </div>
                       <div class="rank">10</div>
                   </div>
               </div>
           </div>
       </div>
-      <div class="random_title">
-          <h3><span>#맑음</span>에 어울리는 노래 추천</h3>
-          <p>추천 노래들을 들어보시고 날씨에 어울리는 아이콘을 클릭해 보세요. 순위에 반영됩니다.</p>
-      </div>
-      <div class="random" id="testda">
-          <div class="random_list">
+          <div class="search_bar">
+              <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="원하는 노래를 찾아 보세요..."
+                         aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="location.href='search.html'">Search</button>
+                  </div>
+              </div>
+          </div>
+          <div class="random_title">
+              <h3><span>#맑음</span>에 어울리는 노래 추천</h3>
+              <p>추천 노래들을 들어보시고 날씨에 어울리는 아이콘을 클릭해 보세요. 순위에 반영됩니다.</p>
+          </div>
+          <div class="random" id="testda">
+              <div class="random_list">
               <div>
                   <img type="button" data-toggle="modal" data-target="#random_modal"
                        src="https://w.namu.la/s/fab2b1831bae7cfaf08c4c46191c393b500894614ef248831901d607e8ec21a0257b865cb6693fede29553f86bc1a8fabb9dea24d17908651d55b2a7867b541554a3a2a6954d5eca26884f191d6aa30f39512b4afc9ad69178b4b1bf14b1ca8bfee66b06ae21d4123ef5c838b581beb8"
@@ -475,10 +486,13 @@
     </div>
 
     <footer class="footer">
-      <div class="copyright">
-          <p>Copyright ©2022 '오늘의 코딩은 맑음'. All rights reserved.</p>
-      </div>
-  </footer>
+        <div class="move_btn">
+            <a href="about.html"><i class="fas fa-compass"></i><span> </span>About us</a>
+        </div>
+        <div class="copyright">
+            <p>Copyright ©2022 '오늘의 코딩은 맑음'. All rights reserved.</p>
+        </div>
+    </footer>
 </div>
 </body>
 </html>

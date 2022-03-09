@@ -131,7 +131,7 @@
     border: 2px solid slategray;
     border-radius: 3px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1.6fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr 1.6fr 1fr;
     padding: 0.3em;
 }
 
@@ -197,19 +197,14 @@
     align-items: center;
 }
 
-.button {
-    border: none;
-    font-size: 0.8em;
-    text-decoration: none;
-    background-color: lightslategray;
-    color: white;
-    padding: 0;
+.play a:hover {
+    text-decoration-line: none;
+    color: orange;
 }
 
-.play a:hover {
-    background-color: goldenrod;
-    text-decoration-line: none;
-    color: white;
+.button {
+    color: red;
+    font-size: 1.5em;
 }
 
 .rank {
@@ -218,6 +213,12 @@
     font-weight: 900;
     color: dimgrey;
 }
+
+/* --------------------- search 바 ------------------------------- */
+.search_bar {
+    margin: 6% 20% 0 20%;
+}
+
 
 /* -----------------------random(날씨별 추천곡)------------------------- */
 .random_title {
@@ -314,7 +315,21 @@
     margin-top: 5%;
 }
 
+.move_btn {
+    text-align: center;
+}
+
+.move_btn a {
+    text-decoration-line: none;
+    color: dimgrey;
+}
+
+.move_btn a:hover {
+    color: orange;
+}
+
 .copyright {
+    margin-top: 1%;
     color: grey;
     font-size: 0.9em;
     text-align: center;
