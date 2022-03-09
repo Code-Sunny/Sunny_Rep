@@ -10,66 +10,70 @@
 // ajax를 사용해서 서버측으로 전송
 $(function () {
   $("#Sunny-btn").click(function () {
-    let title = $("#song-title").text();
-    let artist = $(".music-box-artist").text();
     let weatherBtn = "Sunny";
-    likeBtnSong(title, artist, weatherBtn);
-    showLike(title, artist);
-    console.log(artist);
+    likeBtnSong(weatherBtn);
+    setTimeout(showLike, 100);
   });
 });
 
 $(function () {
   $("#Cloudy-btn").click(function () {
-    let title = $("#song-title").text();
-    let artist = $(".music-box-artist").text();
     let weatherBtn = "Cloudy";
-    likeBtnSong(title, artist, weatherBtn);
-    showLike(title, artist);
+    likeBtnSong(weatherBtn);
+    setTimeout(showLike, 100);
   });
 });
 
 $(function () {
   $("#Rainy-btn").click(function () {
-    let title = $("#song-title").text();
-    let artist = $(".music-box-artist").text();
     let weatherBtn = "Rainy";
-    likeBtnSong(title, artist, weatherBtn);
-    showLike(title, artist);
+    likeBtnSong(weatherBtn);
+    setTimeout(showLike, 100);
   });
 });
 
 $(function () {
   $("#Snowy-btn").click(function () {
-    let title = $("#song-title").text();
-    let artist = $(".music-box-artist").text();
     let weatherBtn = "Snowy";
-    likeBtnSong(title, artist, weatherBtn);
-    showLike(title, artist);
+    likeBtnSong(weatherBtn);
+    setTimeout(showLike, 100);
   });
 });
 
-function likeBtnSong(title, artist, weatherBtn) {
+function likeBtnSong(weatherBtn) {
+  let title = $("#song-title").text();
+  let artist = $(".music-box-artist").text();
+  let username = $(".username").text();
+
   $.ajax({
     type: "POST",
-    url: "/api/likeBtn",
+    url: "/api/like-btn",
     data: {
       title_give: title,
       artist_give: artist,
       weatherBtn_give: weatherBtn,
+      username_give: username,
     },
     success: function (response) {
-      alert(response["msg"]);
+      console.log(response);
+      if (response["msg"] == "로그인을 해주세요!") {
+        alert(response["msg"]);
+        let redirect_url = response["redirect_url"];
+        window.location.replace(redirect_url);
+      }
     },
   });
 }
 
 /* 좋아요 API (GET) 클라이언트 */
 
-function showLike(title, artist) {
+function showLike() {
+  let title = $("#song-title").text();
+  let artist = $(".music-box-artist").text();
+
   $.ajax({
     type: "GET",
-    url: "/api/showLike",
+    url: "/api/show-like",
     data: { title_give: title, artist_give: artist },
     success: function (response) {
       // 서버 DB로부터 받은 그 곡의 데이터(곡 정보, 날씨 좋아요 수)
