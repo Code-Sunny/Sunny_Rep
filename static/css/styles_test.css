@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-/* 우축 상단 현재 위치, 기온, 날씨 */
+/* 우축 상단 현재 위치, 기온, 날씨, 로그인 */
 .top_corner {
     display: flex;
     justify-content: end;
@@ -31,9 +31,6 @@
     color: dimgrey;
 }
 
-
-
-
 /* 헤더 제목 */
 .header h1 {
     font-weight: 700;
@@ -49,7 +46,6 @@
 #nav_color:hover {
     color: orange;
 }
-
 
 /* ---------------------Banner-------------------- */
 .banner {
@@ -250,7 +246,6 @@
     justify-content: center;
     align-items: center;
     margin-top: 3%;
-    /*display: block;*/
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
@@ -258,13 +253,6 @@
     line-heigt: 1;
     height: 30em;
 }
-
-/*.random {*/
-/*    margin: 0 10% 0 10%;*/
-/*    display: grid;*/
-/*    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;*/
-/*    justify-content: center;*/
-/*}*/
 
 .random_list {
     display: flex;
