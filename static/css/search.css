@@ -1,7 +1,10 @@
-.container {
-    border: solid blue;
+/* ---------- header ---------- */
+.header {
+    padding: 2vh 0 1vh 0;
+    text-align: start;
 }
 
+/* 우축 상단 현재 위치, 기온, 날씨, 로그인 */
 .top_corner {
     display: flex;
     justify-content: end;
@@ -24,23 +27,40 @@
     color: dimgrey;
 }
 
-.search_title {
-    margin: 7% 0 5% 0;
+/* 헤더 제목 */
+.header h1 {
+    font-weight: 700;
+    margin: 4vh;
 }
 
+/* --------------------- search 바 ------------------------------- */
 .search_bar {
-    margin: 5%;
+    margin: 3% 5% 5% 5%;
 }
 
+.search_txt {
+    margin: 0 5% 0 5%;
+    font-size: 1.2em;
+}
+
+.search_txt span {
+    color: green;
+    font-weight: 900;
+}
+
+/* -----------------------검색 곡------------------------- */
 .random {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     margin-top: 3%;
 }
 
 .random_list {
+    border: solid gainsboro;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     padding: 0.5em;
@@ -93,4 +113,65 @@
 #modal_wt_icon {
     display: block;
     text-align: start;
+}
+
+.weather_icon button {
+    background-color: white;
+    border: none;
+    margin: 0.5em;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.weather_icon img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+
+/* --------------------footer--------------------- */
+.footer {
+    margin-top: 5%;
+}
+
+.move_btn {
+    text-align: center;
+}
+
+.move_btn a {
+    text-decoration-line: none;
+    color: dimgrey;
+}
+
+.move_btn a:hover {
+    color: orange;
+}
+
+.copyright {
+    margin-top: 1%;
+    color: grey;
+    font-size: 0.9em;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+/* --------------------- 반응형 ------------------------- */
+@media all and (max-width: 1024px) {
+    .chart {
+        margin: 5% 11% 5% 11%;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media all and (max-width: 992px) {
+    .navbar {
+        margin: 0;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .navbar {
+        margin: 0;
+    }
 }
