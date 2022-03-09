@@ -1,4 +1,96 @@
+.container {
+    border: solid blue;
+}
+
 .top_corner {
     display: flex;
     justify-content: end;
+}
+
+.btn_login a {
+    text-decoration-line: none;
+    color: dimgrey;
+}
+
+.btn_login a:hover {
+    color: orange;
+}
+
+.btn_login {
+    margin-left: 3%;
+}
+
+.city_temp_wt {
+    color: dimgrey;
+}
+
+.search_title {
+    margin: 7% 0 5% 0;
+}
+
+.search_bar {
+    margin: 5%;
+}
+
+.random {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.random_list {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.random_list img {
+    width: 10em;
+    cursor: pointer;
+}
+
+.random_song_title {
+    font-size: 0.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 12.5em;
+}
+
+.random_artist {
+    font-size: 0.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 12.5em;
+}
+
+/* ------------------- modal ------------------------ */
+
+.modal-body {
+    text-align: center;
+}
+
+.modal_song_title {
+    text-align: center;
+    margin-bottom: 4%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding: 0 5% 0 5%;
+}
+
+.modal-footer {
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    text-align: end;
+}
+
+#modal_wt_icon {
+    display: block;
+    text-align: start;
 }
