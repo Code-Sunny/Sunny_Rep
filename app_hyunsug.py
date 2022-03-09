@@ -73,10 +73,12 @@ def join():
     existing_user = db.users.find_one({"username": username})
     if existing_user:
         # db에 이미 존재하는 username일 경우
-        return jsonify({"ok": False, "err": "이미 존재하는 사용자명입니다."})
+        # return jsonify({"ok": False, "err": "이미 존재하는 사용자명입니다."})
+        return redirect("/j", 400, {"error": "이미 존재하는 사용자명입니다."})
     elif password != password2:
         # db에 존재하지 않으나 입력된 암호 둘이 동일하지 않을 경우
-        return jsonify({"ok": False, "err": "패스워드가 동일하지 않습니다."})
+        # return jsonify({"ok": False, "err": "패스워드가 동일하지 않습니다."})
+        return redirect("/j", 400, {"error": "패스워드가 동일하지 않습니다."})
     else:
         # db에 존재하지 않고, 암호가 일치 할 때
         # password를 암호화한다. hashpw(hashing 할 문자열, hashing 횟수)
@@ -100,10 +102,12 @@ def login():
     user = db.users.find_one({"username": username})
     if not user:
         # 존재하지 않는 user
-        return jsonify({"ok": False, "err": "존재하지 않는 사용자명입니다."})
+        # return jsonify({"ok": False, "err": "존재하지 않는 사용자명입니다."})
+        return redirect("/main", 400, {"error": "존재하지 않는 사용자명입니다."})
     elif not checkpw(password.encode("utf-8"), user["password"]):
         # 입력된 password를 hash했을 때 저장된, hashing 된 password와 일치하지 않을 때
-        return jsonify({"ok": False, "err": "잘못된 비밀번호입니다."})
+        # return jsonify({"ok": False, "err": "잘못된 비밀번호입니다."})
+        return redirect("/main", 400, {"error": "비밀번호가 일치하지 않습니다."})
     else:
         session["username"] = username
         # 로그인을 완료하고 첫 페이지로 돌아간다.

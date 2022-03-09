@@ -20,10 +20,8 @@ sp = spotipy.Spotify(auth_manager=auth_manager)
 # print(len(response), response)
 
 # search
-response = sp.search("artist:IU", limit=10, market="KR", type="track")
-items = response["tracks"]["items"]
+response = sp.search("artist:IU", limit=1, type="track")
+# items = response["tracks"]["items"]
 
-for item in items:
-    artist = item["artists"][0]["name"]
-    title = item["name"]
-    print(title, "/ ", artist)
+with open("test.py", "w") as file:
+    file.write(str(response))
