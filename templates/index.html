@@ -75,6 +75,11 @@
       .hidden {
         display : none;
       }
+
+      .orange{
+        background-color: orange;
+      }
+      
     </style>
     <script>
       function openclose() {
@@ -87,6 +92,8 @@
           $("#btn-posting-box").text("닫기");
         }
       }
+
+
 
       // function weather() {
       //     $.ajax({
@@ -201,14 +208,16 @@
         </span>
   
         <!-- 좋아요 버튼 누를 시 서버에 어떤 버튼을 눌렀는지 정보를 보내기 위해 선택할 태그 (TYPE : POST) -->
-        <input id="Sunny-btn" type="button" value="Sunny"></input>
-        <span class="Sunny-btn__like">0</span>
-        <input id="Cloudy-btn" type="button" value="Cloudy"></input>
-        <span class="Cloudy-btn__like">0</span>
-        <input id="Rainy-btn" type="button" value="Rainy"></input>
-        <span class="Rainy-btn__like">0</span>
-        <input id="Snowy-btn" type="button" value="Snowy"></input>
-        <span class="Snowy-btn__like">0</span>
+
+          <input id="Sunny-btn" type="button" value="Sunny"></input>
+          <span class="Sunny-btn__like">0</span>
+          <input id="Cloudy-btn" type="button" value="Cloudy"></input>
+          <span class="Cloudy-btn__like">0</span>
+          <input id="Rainy-btn" type="button" value="Rainy"></input>
+          <span class="Rainy-btn__like">0</span>
+          <input id="Snowy-btn" type="button" value="Snowy"></input>
+          <span class="Snowy-btn__like">0</span>
+
       </div>
     </div>
   </body>
