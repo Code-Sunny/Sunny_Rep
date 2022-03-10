@@ -17,6 +17,7 @@ FLASK_SECRET = os.getenv("APP_SECRET")
 
 # flask server setting
 from flask import Flask, jsonify, redirect, render_template, request, session
+
 # from api import api
 import requests
 
@@ -32,19 +33,23 @@ app = Flask(__name__)
 app.secret_key = FLASK_SECRET
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def landing():
     if "username" in session:
         return render_template("index.html", {"username": session["username"]})
     return render_template("index.html")
 
 
-@app.route("/main")
+@app.route("/main", methods=["GET"])
 def main():
     if "username" in session:
         return render_template("main.html", {"username": session["username"]})
     return render_template("main.html")
 
+@app.route("/main/search", methods=["GET"])
+def search():
+    query = request.args.get()
+    return render_template("serach.html", {"result": {}})
 
 @app.route("/get-weather", methods=["POST"])
 def get_weather():
@@ -126,6 +131,7 @@ def logout():
         session.clear()
         return redirect("/")
 
+
 # @app.route("/user/<userId>")로 하는 방법도 괜찮을 것 같다.
 @app.route("/user/my-profile")
 def profile():
@@ -133,6 +139,28 @@ def profile():
         return redirect("/", 403)
     else:
         return render_template("/profile", {"username": session["username"]})
+
+
+@app.route("/api/like-btn", methods=["POST"])
+def new_like():
+    if not "username" in session:
+        return jsonify({"error": "로그인 되지 않은 이용자입니다."})
+    else:
+        return jsonify({"ok": True, "msg": "Like updated"})
+
+
+@app.route("/api/show-like", methods=["GET"])
+def show_like():
+    args = request.args.get()
+    track_id = args["track_id"]
+    return None
+
+
+@app.route("/api/song-info", methods=["GET"])
+def song_info():
+    song_info = {}
+    return jsonify(song_info)
+
 
 if __name__ == "__main__":
     app.run("0.0.0.0", PORT or 5000, True)
