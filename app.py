@@ -17,7 +17,7 @@ FLASK_SECRET = os.getenv("APP_SECRET")
 
 # flask server setting
 from flask import Flask, jsonify, redirect, render_template, request, session
-
+# from api import api
 import requests
 
 # 암호화용 library
@@ -26,16 +26,23 @@ from bcrypt import checkpw, hashpw, gensalt
 from db import db
 
 app = Flask(__name__)
+# Blueprint를 이용하여, 단위별로 라우팅을 분리할 수 있다.
+# app.register_blueprint(api)
+# session 사용을 위해 flask가 secret key를 가져야 한다.
 app.secret_key = FLASK_SECRET
 
 
 @app.route("/")
 def landing():
+    if "username" in session:
+        return render_template("index.html", {"username": session["username"]})
     return render_template("index.html")
 
 
 @app.route("/main")
 def main():
+    if "username" in session:
+        return render_template("main.html", {"username": session["username"]})
     return render_template("main.html")
 
 
@@ -119,6 +126,13 @@ def logout():
         session.clear()
         return redirect("/")
 
+# @app.route("/user/<userId>")로 하는 방법도 괜찮을 것 같다.
+@app.route("/user/my-profile")
+def profile():
+    if not "username" in session:
+        return redirect("/", 403)
+    else:
+        return render_template("/profile", {"username": session["username"]})
 
 if __name__ == "__main__":
     app.run("0.0.0.0", PORT or 5000, True)
