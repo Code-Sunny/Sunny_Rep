@@ -12,6 +12,10 @@ $(function () {
   $("#Sunny-btn").click(function () {
     let weatherBtn = "Sunny";
     console.log($("#Sunny-btn").css("font-size"));
+
+    // 만약 버튼 css가 폰트 사이즈 16이면 -> 현재 사용자가 좋아요 안 누른 상태이므로
+    // 서버에 현재 버튼 상태 false로 전달
+    // 아니면, true로 전달
     if ($("#Sunny-btn").css("font-size") == "16px") {
       is_weatherLike = false;
     } else {
@@ -27,10 +31,10 @@ $(function () {
   $("#Cloudy-btn").click(function () {
     let weatherBtn = "Cloudy";
 
-    if ($("#Cloudy-btn").css("background-color") == "blue") {
-      is_weatherLike = true;
-    } else {
+    if ($("#Cloudy-btn").css("font-size") == "16px") {
       is_weatherLike = false;
+    } else {
+      is_weatherLike = true;
     }
 
     likeBtnSong(weatherBtn, is_weatherLike);
@@ -42,10 +46,10 @@ $(function () {
   $("#Rainy-btn").click(function () {
     let weatherBtn = "Rainy";
 
-    if ($("#Rainy-btn").css("background-color") == "blue") {
-      is_weatherLike = true;
-    } else {
+    if ($("#Rainy-btn").css("font-size") == "16px") {
       is_weatherLike = false;
+    } else {
+      is_weatherLike = true;
     }
 
     likeBtnSong(weatherBtn, is_weatherLike);
@@ -57,10 +61,10 @@ $(function () {
   $("#Snowy-btn").click(function () {
     let weatherBtn = "Snowy";
 
-    if ($("#Snowy-btn").css("background-color") == "blue") {
-      is_weatherLike = true;
-    } else {
+    if ($("#Snowy-btn").css("font-size") == "16px") {
       is_weatherLike = false;
+    } else {
+      is_weatherLike = true;
     }
 
     likeBtnSong(weatherBtn, is_weatherLike);
@@ -141,31 +145,30 @@ function showLike() {
 
       // 날씨별 사용자가 버튼 눌렀는지, 안 눌렀는지에 따라 html,css 다르게
       if (is_SunnyLike == true) {
-        // 맑음 버튼 사용자가 누른 상태일 때 디자인
+        // 맑음 버튼 사용자가 누른 상태일 때 디자인 : font-size : 40
         $("#Sunny-btn").css({ "font-size": "40px" });
       } else {
-        // 맑음 버튼 사용자가 안 누른? 상태일 때 디자인 (원래 디자인)
+        // 맑음 버튼 사용자가 안 누른? 상태일 때 디자인 (원래 디자인) : font-size : 16
         $("#Sunny-btn").css({ "font-size": "16px" });
       }
       // 이렇게 4개 버튼 디자인
 
-      // 예시 : 사용자가 누른 상태일 때 background : blue / 원래 디자인 : orange
       if (is_CloudyLike == true) {
-        $("#Cloudy-btn").css({ "background-color": "blue" });
+        $("#Cloudy-btn").css({ "font-size": "40px" });
       } else {
-        $("#Cloudy-btn").css({ "background-color": "orange" });
+        $("#Cloudy-btn").css({ "font-size": "16px" });
       }
 
       if (is_RainyLike == true) {
-        $("#Rainy-btn").css({ "background-color": "blue" });
+        $("#Rainy-btn").css({ "font-size": "40px" });
       } else {
-        $("#Rainy-btn").css({ "background-color": "orange" });
+        $("#Rainy-btn").css({ "font-size": "16px" });
       }
 
       if (is_SnowyLike == true) {
-        $("#Snowy-btn").css({ "background-color": "blue" });
+        $("#Snowy-btn").css({ "font-size": "40px" });
       } else {
-        $("#Snowy-btn").css({ "background-color": "orange" });
+        $("#Snowy-btn").css({ "font-size": "16px" });
       }
     },
   });
