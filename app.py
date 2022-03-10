@@ -46,10 +46,12 @@ def main():
         return render_template("main.html", {"username": session["username"]})
     return render_template("main.html")
 
+
 @app.route("/main/search", methods=["GET"])
 def search():
     query = request.args.get()
     return render_template("serach.html", {"result": {}})
+
 
 @app.route("/get-weather", methods=["POST"])
 def get_weather():

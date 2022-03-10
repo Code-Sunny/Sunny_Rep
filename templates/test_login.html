@@ -7,13 +7,30 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="/login" method="post">
+    <form>
       <label for="username">Username</label>
       <input type="text" name="username" id="username" />
       <label for="password">Password</label>
       <input type="password" name="password" id="password" />
       <button type="submit">login</button>
     </form>
-    <script></script>
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const username = document.querySelector("#username").value;
+        const password = document.querySelector("#password").value;
+        const response = await fetch("/login", {
+          method:"POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password
+          })
+        });
+      });
+    </script>
   </body>
 </html>
