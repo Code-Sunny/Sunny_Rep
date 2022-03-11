@@ -1,16 +1,15 @@
 /* 종아요 API 함수 실행 순서 : POST -> GET이어야 한다 */
 /* POST로 DB에 좋아요 수 +1로 업데이트 후 GET으로 화면에 보여주기*/
 
-/* 좋아요 API (POST) 클라이언트 */
+/* 날씨별 좋아요 버튼 클릭 되었을 때! */
 
-// 각 버튼이 클릭되었을 때
 // 팝업창의 노래 제목 태그의 text 불러오기 = 곡 제목
 // 버튼 id에 적힌 날씨 = 그 날씨 버튼을 클릭함
 // 두 개의 정보를 매개변수로 likeBtnSong 함수를 호출하여
 // ajax를 사용해서 서버측으로 전송
 $(function () {
   $("#Sunny-btn").click(function () {
-    let weatherBtn = "Sunny";
+    let weatherLikeBtn = "Sunny";
     console.log($("#Sunny-btn").css("font-size"));
 
     // 만약 버튼 css가 폰트 사이즈 16이면 -> 현재 사용자가 좋아요 안 누른 상태이므로
@@ -22,14 +21,14 @@ $(function () {
       is_weatherLike = true;
     }
     console.log(is_weatherLike);
-    likeBtnSong(weatherBtn, is_weatherLike);
+    likeBtnSong(weatherLikeBtn, is_weatherLike);
     setTimeout(showLike, 100);
   });
 });
 
 $(function () {
   $("#Cloudy-btn").click(function () {
-    let weatherBtn = "Cloudy";
+    let weatherLikeBtn = "Cloudy";
 
     if ($("#Cloudy-btn").css("font-size") == "16px") {
       is_weatherLike = false;
@@ -37,14 +36,14 @@ $(function () {
       is_weatherLike = true;
     }
 
-    likeBtnSong(weatherBtn, is_weatherLike);
+    likeBtnSong(weatherLikeBtn, is_weatherLike);
     setTimeout(showLike, 100);
   });
 });
 
 $(function () {
   $("#Rainy-btn").click(function () {
-    let weatherBtn = "Rainy";
+    let weatherLikeBtn = "Rainy";
 
     if ($("#Rainy-btn").css("font-size") == "16px") {
       is_weatherLike = false;
@@ -52,14 +51,14 @@ $(function () {
       is_weatherLike = true;
     }
 
-    likeBtnSong(weatherBtn, is_weatherLike);
+    likeBtnSong(weatherLikeBtn, is_weatherLike);
     setTimeout(showLike, 100);
   });
 });
 
 $(function () {
   $("#Snowy-btn").click(function () {
-    let weatherBtn = "Snowy";
+    let weatherLikeBtn = "Snowy";
 
     if ($("#Snowy-btn").css("font-size") == "16px") {
       is_weatherLike = false;
@@ -67,12 +66,44 @@ $(function () {
       is_weatherLike = true;
     }
 
-    likeBtnSong(weatherBtn, is_weatherLike);
+    likeBtnSong(weatherLikeBtn, is_weatherLike);
     setTimeout(showLike, 100);
   });
 });
 
-function likeBtnSong(weatherBtn, is_weatherLike) {
+/* 메인페이지 날씨별 플레이리스트 이동 버튼 클릭되었을 때 */
+
+$(function () {
+  $(".Sunny-moveBtn").click(function () {
+    let weatherMoveBtn = "Sunny";
+    showRank(weatherMoveBtn);
+  });
+});
+
+$(function () {
+  $(".Cloudy-moveBtn").click(function () {
+    let weatherMoveBtn = "Cloudy";
+    showRank(weatherMoveBtn);
+  });
+});
+
+$(function () {
+  $(".Rainy-moveBtn").click(function () {
+    let weatherMoveBtn = "Rainy";
+    showRank(weatherMoveBtn);
+  });
+});
+
+$(function () {
+  $(".Snowy-moveBtn").click(function () {
+    let weatherMoveBtn = "Snowy";
+    showRank(weatherMoveBtn);
+  });
+});
+
+/* 좋아요 API (POST) 클라이언트 */
+
+function likeBtnSong(weatherLikeBtn, is_weatherLike) {
   let title = $("#song-title").text();
   let artist = $(".music-box-artist").text();
   let username = $(".username").text();
@@ -83,7 +114,7 @@ function likeBtnSong(weatherBtn, is_weatherLike) {
     data: {
       title_give: title,
       artist_give: artist,
-      weatherBtn_give: weatherBtn,
+      weatherBtn_give: weatherLikeBtn,
       username_give: username,
       is_weatherLike_give: is_weatherLike,
     },
@@ -97,6 +128,8 @@ function likeBtnSong(weatherBtn, is_weatherLike) {
     },
   });
 }
+
+/* -----------------API----------------------- */
 
 /* 좋아요 API (GET) 클라이언트 */
 
@@ -169,6 +202,26 @@ function showLike() {
         $("#Snowy-btn").css({ "font-size": "40px" });
       } else {
         $("#Snowy-btn").css({ "font-size": "16px" });
+      }
+    },
+  });
+}
+
+/* 메인페이지 좋아요 순위별 곡 API (GET) 클라이언트 */
+
+function showRank(weatherMoveBtn) {
+  $.ajax({
+    type: "GET",
+    url: "/main/song-rank",
+    data: { weatherMoveBtn_give: weatherMoveBtn },
+    success: function (response) {
+      console.log(response);
+      let song_rank = response["songs_rank"];
+
+      // i = 0~9까지 1위부터 10위
+      for (let i = 0; i < 10; i++) {
+        let title = song_rank[i]["title"];
+        let artist = song_rank[i]["artist"];
       }
     },
   });

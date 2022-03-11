@@ -1,10 +1,24 @@
-from re import A
+
 from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.dbplaylist
+
+''' 메인페이지 좋아요 순위별 곡 (GET) 서버'''
+@app.route('/main/song-rank', methods=['GET'])
+def song_showRank():
+    
+    # 클라이언트에게 받은 이동 버튼 이름 저장
+    weatherMoveBtn_receive = request.args['weatherMoveBtn_give']
+    # 이동 버튼 정보를 바탕으로 순위별 데이터 10개 조회하여 저장
+    song_rank = list(db.songs.find({}, {'_id' : False}).sort(weatherMoveBtn_receive, -1).limit(10))
+    print("----------------------------------------------------")
+    print(song_rank)
+    print("----------------------------------------------------")
+    # 클라이언트 측으로 날씨, 순위별 곡 내려주기
+    return jsonify ({'songs_rank' : song_rank})
 
 ''' 좋아요 API (GET) 서버 '''
 
@@ -43,7 +57,9 @@ def like_btn():
     
     # 사용자가 어떤 버튼을 눌렀는지 정보 : weather_receive
     weatherBtn_receive = request.form['weatherBtn_give'] 
-    
+    print("----------------------------------------------------")
+    print(weatherBtn_receive)
+    print("----------------------------------------------------")
     # 사용자가 누른 버튼의 좋아요 상태 (현재 좋아요 눌린 상태인지 안 눌린 상태인지)
     is_weatherLike_receive = request.form['is_weatherLike_give']
     print(is_weatherLike_receive)
@@ -67,7 +83,7 @@ def like_btn():
         # 이때, 곡 가수 변수 저장 시 아티스트가 같고 곡 이름이 다른 데이터 있을 수 있으므로 이름과 아티스트 둘 다 체크
         song = db.songs.find_one({'title':title_receive, 'artist' : artist_receive})
 
-        
+
         # db에 없다면 추가할 default 데이터
         songs_doc = {'title' : title_receive, 
             'artist' : artist_receive, 
