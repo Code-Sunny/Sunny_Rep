@@ -66,7 +66,16 @@ def get_weather():
         "appid": OPENWEATHER_KEY,
     }
     response = requests.get(url, params=params)
-    weather = response.json()["weather"]
+    weather_id = response.json()["weather"]["id"]
+    weather = ""
+    if weather_id == 800:
+        weather = "Sunny"
+    elif weather_id >= 200 and weather_id < 600:
+        weather = "Rainy"
+    elif weather_id >= 600 and weather_id < 700:
+        weather = "snowy"
+    elif weather_id >= 700 and weather_id < 805:
+        weather = "cloudy"
     return jsonify({"weather": weather})
 
 
@@ -148,6 +157,10 @@ def new_like():
     if not "username" in session:
         return jsonify({"error": "로그인 되지 않은 이용자입니다."})
     else:
+        query = request.args.get()
+        song_id = query["song_id"]
+        weather = query["weather"]
+
         return jsonify({"ok": True, "msg": "Like updated"})
 
 
@@ -162,6 +175,11 @@ def show_like():
 def song_info():
     song_info = {}
     return jsonify(song_info)
+
+
+@app.route("/api/delete-like", methods=["DELETE"])
+def delete_like():
+    return None
 
 
 if __name__ == "__main__":
