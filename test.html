@@ -27,7 +27,7 @@
         if (audio) {
           audio.pause();
         }
-        audio.src = btn.datset.url;
+        audio.src = btn.dataset["url"];
         if ([...btn.classList].some(x => x === "fa-play")) {
           btn.classList.remove("fa-play");
           btn.classList.add("fa-pause");
