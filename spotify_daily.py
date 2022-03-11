@@ -44,4 +44,5 @@ for item in toplists:
         }
         songs.append(track_info)
 
-print(songs)
+with open("file.py", "w") as f:
+    f.write(f"a={str(songs)}")

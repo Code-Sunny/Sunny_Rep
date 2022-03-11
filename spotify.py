@@ -18,9 +18,9 @@ sp = spotipy.Spotify(auth_manager=auth_manager)
 # genres
 # response = sp.recommendation_genre_seeds()["genres"]
 # print(len(response), response)
-query = "아이유"
+# query = "아이유"
 # search
-response = sp.search(query, limit=10, type="track")
+# response = sp.search(query, limit=10, type="track")
 # items = response["tracks"]["items"]
 
 
@@ -34,6 +34,7 @@ def get_songs(query_type, query):
     songs = []
     for track in items:
         song = {
+            "track_id": track["id"],
             "artist": track["artists"][0]["name"],
             "title": track["name"],
             "preview_url": track["preview_url"],

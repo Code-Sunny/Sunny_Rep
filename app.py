@@ -50,7 +50,10 @@ def main():
 @app.route("/main/search", methods=["GET"])
 def search():
     query = request.args.get()
-    return render_template("serach.html", {"result": {}})
+    from spotify import get_songs
+
+    songs = get_songs(query["query_type"], query["query"])
+    return render_template("serach.html", {"result": songs})
 
 
 @app.route("/get-weather", methods=["POST"])
