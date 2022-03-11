@@ -19,10 +19,14 @@
   </li>
   <script>
     const playPauseButtons = document.querySelectorAll(".play-pause-button");
+    let audio = new Audio();
     for (let button of playPauseButtons) {
       button.addEventListener("click", (event) => {
         let btn = event.target;
-        let audio = new Audio(btn.dataset.url);
+        if (audio) {
+          audio.pause();
+        }
+        audio = new Audio(btn.dataset.url);
         if ([...btn.classList].some(x => x === "fa-play")) {
           btn.classList.remove("fa-play");
           btn.classList.add("fa-pause");
@@ -30,7 +34,6 @@
         } else {
           btn.classList.add("fa-play");
           btn.classList.remove("fa-pause");
-          audio.pause();
         }
       })
     }
