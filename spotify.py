@@ -23,8 +23,6 @@ query = "아이유"
 response = sp.search(query, limit=10, type="track")
 # items = response["tracks"]["items"]
 
-print(response)
-
 
 def get_songs(query_type, query):
     if query_type == "artist":
@@ -32,3 +30,19 @@ def get_songs(query_type, query):
     else:
         query = "track:" + query
     response = sp.search(query, limit=20, type="track")
+    items = response["tracks"]["items"]
+    songs = []
+    for track in items:
+        song = {
+            "artist": track["artists"][0]["name"],
+            "title": track["name"],
+            "preview_url": track["preview_url"],
+            "cover_image": track["album"]["images"][1]["url"],
+        }
+        songs.append(song)
+    return songs
+
+
+response = get_songs("artist", "Younha")
+with open("test.py", "w") as f:
+    f.write(f"a = {str(response)}")
