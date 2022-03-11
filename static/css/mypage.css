@@ -9,28 +9,34 @@
 }
 
 /* 우축 상단 현재 위치, 기온, 날씨, 로그인 */
+/*.top {*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr 1fr;*/
+/*}*/
+.top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.top_left a {
+    justify-content: start;
+    text-decoration-line: none;
+    color: dimgrey;
+    font-size: 25px;
+}
+
+.top_left a:hover {
+    color: orange;
+}
+
 .top_corner {
     display: flex;
     justify-content: end;
 }
 
-.btn_login a {
-    text-decoration-line: none;
-    color: dimgrey;
-}
-
-.btn_login a:hover {
-    color: orange;
-}
-
-.btn_login {
-    margin-left: 3%;
-}
-
 .city_temp_wt {
     color: dimgrey;
 }
-
 .header h1 {
     color: dimgrey;
     font-weight: 700;
