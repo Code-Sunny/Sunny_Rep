@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <title>Document</title>
+</head>
+<body>
+  <li>
+    <button class="play-pause-button fa fa-play" data-url="https://p.scdn.co/mp3-preview/73bbc165dc2883cc59a0c8b46700af11eba03bc7?cid=ea29245b299b4ed9b0a83436450a9c6c"></button>
+  </li>
+  <li>
+    <button class="play-pause-button fa fa-play" data-url="https://p.scdn.co/mp3-preview/73bbc165dc2883cc59a0c8b46700af11eba03bc7?cid=ea29245b299b4ed9b0a83436450a9c6c"></button>
+  </li>
+  <li>
+    <button class="play-pause-button fa fa-play" data-url="https://p.scdn.co/mp3-preview/73bbc165dc2883cc59a0c8b46700af11eba03bc7?cid=ea29245b299b4ed9b0a83436450a9c6c"></button>
+  </li>
+  <script>
+    const playPauseButtons = document.querySelectorAll(".play-pause-button");
+    for (let button of playPauseButtons) {
+      button.addEventListener("click", (event) => {
+        let btn = event.target;
+        let audio = new Audio(btn.dataset.url);
+        if ([...btn.classList].some(x => x === "fa-play")) {
+          btn.classList.remove("fa-play");
+          btn.classList.add("fa-pause");
+          audio.play();
+        } else {
+          btn.classList.add("fa-play");
+          btn.classList.remove("fa-pause");
+          audio.pause();
+        }
+      })
+    }
+  </script>
+</body>
+</html>
