@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="/join" method="post">
+    <form>
       <label for="username">
         <input
           type="text"
@@ -24,5 +24,29 @@
       </label>
       <button type="submit">가입하기</button>
     </form>
+    <script>
+      const form = document.querySelctor("form");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const username = form.querySelector("#username");
+        const password = form.querySelector("#password");
+        const password2 = form.querySelector("#password2");
+        if (password === password2) {
+          const response = await fetch("/join", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+              username,
+              password,
+            }),
+          });
+          console.log(response);
+        } else {
+          window.location.reload();
+        }
+      });
+    </script>
   </body>
 </html>
