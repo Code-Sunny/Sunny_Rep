@@ -131,29 +131,38 @@
     border: 2px solid slategray;
     border-radius: 3px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1.6fr 1fr;
+    grid-template-columns: 0.8fr 2fr 3fr 2fr 4fr;
     padding: 0.3em;
+}
+
+.rank {
+    text-align: start;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: gray;
+    margin-right: 5px;
 }
 
 .chart_list img {
     width: 5em;
     height: 5em;
     display: block;
+    border-radius: 2px;
     align-items: center;
 }
 
 .chart_list_detail {
-    margin: 5% 0  0 5%;
+    margin: 0.5em 0 0 0.5em;
 }
 
 .artist {
-    margin-top: 0;
     font-size: 0.8em;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 10em
+    width: 10em;
+    margin-bottom: 0.5em;
 }
 
 .song_title {
@@ -164,24 +173,46 @@
     white-space: normal;
     width: 10em;
     line-heigt: 1;
-    height: 4.2em;
+    height: 3em;
     text-align: left;
     word-wrap: break-word;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
+.player {
+    text-align: center;
+    padding-top: 28px;
+}
+
+.play-pause-button {
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    color: darkgrey;
+    background-color: white;
+}
+
+button:focus {
+    outline: none;
+}
+
 .weather_icon {
-    margin: 0;
     display: flex;
     align-items: center;
+    margin-right: 0.5em;
+}
+
+.weather_cloumn {
+    text-align: center;
+    margin-top: 0.8em;
 }
 
 .weather_icon button {
     background-color: white;
     border: none;
-    margin: 0.5em;
+    margin: 0.3em;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -191,27 +222,9 @@
     height: 1.5em;
 }
 
-.play {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.play a:hover {
-    text-decoration-line: none;
-    color: orange;
-}
-
-.button {
-    color: red;
-    font-size: 1.5em;
-}
-
-.rank {
-    text-align: end;
-    font-size: 2em;
-    font-weight: 900;
-    color: dimgrey;
+.weather_cloumn_txt {
+    font-size: 0.65em;
+    color: slategray;
 }
 
 /* --------------------- search 바 ------------------------------- */
@@ -300,13 +313,19 @@
 
 .modal-footer {
     display: grid;
-    grid-template-columns: 7fr 1fr;
+    grid-template-columns: 1fr 1fr;
     text-align: end;
+    margin-right: 0.7em;
 }
 
 #modal_wt_icon {
     display: block;
     text-align: start;
+}
+
+#modal_player {
+    width: 230px;
+    height: 35px;
 }
 
 /* --------------------footer--------------------- */
