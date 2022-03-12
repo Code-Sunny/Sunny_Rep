@@ -137,64 +137,11 @@
     <script>
 
         $(document).ready(function($) {
-
-                $(".scroll_move").click(function(event){
-
-                        event.preventDefault();
-
-                        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-
-                });
-
+            $(".scroll_move").click(function(event){
+                    event.preventDefault();
+                    $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+            });
         });
-
-        // function weather() {
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "",
-        //         data: {},
-        //         success: function (response) {
-        //             let rows = response[''];
-        //             $('#now_local').append(rows);
-        //         }
-        //     })
-        // }
-        //
-        // function weather() {
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "",
-        //         data: {},
-        //         success: function (response) {
-        //             let rows = response[''];
-        //             $('#now_temperature').append(rows);
-        //         }
-        //     })
-        // }
-        //
-        // function listing() {
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "",
-        //         data: {},
-        //         success: function (response) {
-        //             let rows = response['']
-        //             for (let i = 0; i < rows.length; i++) {
-        //                 let  = rows[i]['']
-        //                 let  = rows[i]['']
-        //                 let  = rows[i]['']
-        //
-        //                 let temp_html = `<div class="music-box-in">
-        //                                     <img class="music-box-img" src="${}" alt="Card image cap">
-        //                                     <p class="music-box-title">${}</p>
-        //                                     <p class="music-box-artist">${}</p>
-        //
-        //                                 </div>`
-        //                $('#music-box').append(temp_html);
-        //             }
-        //         }
-        //     })
-        // }
     </script>
 </head>
 
@@ -218,6 +165,7 @@
                 <p class="temperature">기온 : <span id="now_temperature">16°C</span></p>
             </div>
         </div>
+
         <div class="btn-container">
             <div class="btn00 btn01" data-toggle="modal" data-target="#popup_box">추천 받기</div>
         </div>
@@ -252,16 +200,13 @@
                          <a href="https://music.youtube.com/" target="_blank" class="btn00 btn02">
                             지금 재생
                          </a>
-                        <a href="https://music.youtube.com/" target="" class="btn00 btn02">
+                        <a href="" target="" class="btn00 btn02">
                             다른 노래 추천
                         </a>
                     </span>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </body>
 </html>
