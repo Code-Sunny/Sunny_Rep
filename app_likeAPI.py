@@ -57,12 +57,10 @@ def like_btn():
     
     # 사용자가 어떤 버튼을 눌렀는지 정보 : weather_receive
     weatherBtn_receive = request.form['weatherBtn_give'] 
-    print("----------------------------------------------------")
-    print(weatherBtn_receive)
-    print("----------------------------------------------------")
+
     # 사용자가 누른 버튼의 좋아요 상태 (현재 좋아요 눌린 상태인지 안 눌린 상태인지)
     is_weatherLike_receive = request.form['is_weatherLike_give']
-    print(is_weatherLike_receive)
+
 
     # 받아온 is_weatherLike_receive 가 true면 좋아요 -1 수행 / false면 좋아요 +1 수행
     ''' 좋아요 -1 기능'''
@@ -110,11 +108,10 @@ def like_btn():
             
         # 사용자의 닉네임 정보 : username_receive
         username_receive = request.form['username_give']     
-        
+
         # 사용자의 닉네임 정보를 찾아서 변수에 저장
         username = db.users.find_one({'username' : username_receive})
-        print(username)
-        
+
         if username == None:
             return jsonify({'msg' : "로그인을 해주세요!", 'redirect_url' : "/login"})
         

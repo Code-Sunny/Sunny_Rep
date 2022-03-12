@@ -10,12 +10,12 @@
 $(function () {
   $("#Sunny-btn").click(function () {
     let weatherLikeBtn = "Sunny";
-    console.log($("#Sunny-btn").css("font-size"));
+    console.log($("#Sunny-btn").css("border-color"));
 
     // 만약 버튼 css가 폰트 사이즈 16이면 -> 현재 사용자가 좋아요 안 누른 상태이므로
     // 서버에 현재 버튼 상태 false로 전달
     // 아니면, true로 전달
-    if ($("#Sunny-btn").css("font-size") == "16px") {
+    if ($("#Sunny-btn").css("border-color") == "rgb(255, 255, 255)") {
       is_weatherLike = false;
     } else {
       is_weatherLike = true;
@@ -101,6 +101,8 @@ $(function () {
   });
 });
 
+/* -----------------API----------------------- */
+
 /* 좋아요 API (POST) 클라이언트 */
 
 function likeBtnSong(weatherLikeBtn, is_weatherLike) {
@@ -128,8 +130,6 @@ function likeBtnSong(weatherLikeBtn, is_weatherLike) {
     },
   });
 }
-
-/* -----------------API----------------------- */
 
 /* 좋아요 API (GET) 클라이언트 */
 
@@ -179,10 +179,10 @@ function showLike() {
       // 날씨별 사용자가 버튼 눌렀는지, 안 눌렀는지에 따라 html,css 다르게
       if (is_SunnyLike == true) {
         // 맑음 버튼 사용자가 누른 상태일 때 디자인 : font-size : 40
-        $("#Sunny-btn").css({ "font-size": "40px" });
+        $("#Sunny-btn").css({ "border-color": "rgb(0,0,0)" });
       } else {
+        $("#Sunny-btn").css({ "border-color": "rgb(255,255,255)" });
         // 맑음 버튼 사용자가 안 누른? 상태일 때 디자인 (원래 디자인) : font-size : 16
-        $("#Sunny-btn").css({ "font-size": "16px" });
       }
       // 이렇게 4개 버튼 디자인
 
