@@ -1,12 +1,14 @@
-
 from flask import Flask, render_template, request, jsonify
+
 app = Flask(__name__)
 
 from pymongo import MongoClient
+
 client = MongoClient('localhost', 27017)
 db = client.dbplaylist
 
 ''' 메인페이지 좋아요 순위별 곡 (GET) 서버'''
+
 @app.route('/main/song-rank', methods=['GET'])
 def song_showRank():
     
@@ -14,10 +16,10 @@ def song_showRank():
     weatherMoveBtn_receive = request.args['weatherMoveBtn_give']
     # 이동 버튼 정보를 바탕으로 순위별 데이터 10개 조회하여 저장
     song_rank = list(db.songs.find({}, {'_id' : False}).sort(weatherMoveBtn_receive, -1).limit(10))
-    print("----------------------------------------------------")
-    print(song_rank)
-    print("----------------------------------------------------")
+
+
     # 클라이언트 측으로 날씨, 순위별 곡 내려주기
+
     return jsonify ({'songs_rank' : song_rank})
 
 ''' 좋아요 API (GET) 서버 '''
@@ -31,10 +33,12 @@ def song_showLike():
     # 클라이언트에게 받은 곡 가수 저장
     artist_receive = request.args['artist_give']
     
+
     # 클라이언트에게 받은 유저 닉네임 저장
     username_receive = request.args['username_give']
 
     # 클라이언트에게 받은 곡 정보를 조회하여 그 곡의 데이터 저장
+
     song = db.songs.find_one({"title" : title_receive, 'artist' : artist_receive}, {'_id' : False})
     
     # 클라이언트에게 받은 유저 닉네임, 버튼 정보를 조회하여 그 데이터 저장
@@ -51,7 +55,9 @@ def like_btn():
 
     # 사용자가 버튼을 누른 곡 이름 : title_receive
     title_receive = request.form['title_give']
-    
+    print("-----------------")
+    print(title_receive)
+    print("-----------------")
     # 사용자가 버튼을 누른 곡 가수 : artist_receive
     artist_receive = request.form['artist_give']
     
@@ -62,11 +68,13 @@ def like_btn():
     is_weatherLike_receive = request.form['is_weatherLike_give']
 
 
+
     # 받아온 is_weatherLike_receive 가 true면 좋아요 -1 수행 / false면 좋아요 +1 수행
     ''' 좋아요 -1 기능'''
     # 좋아요 -1 기능은 이미 곡들이 DB에 있는 상태!
     # 따라서, db를 조회해서 사용자가 누른 곡과 날씨 버튼에 맞는 데이터를 찾아서 좋아요 -1
     if is_weatherLike_receive == "true":
+
         song = db.songs.find_one({'title':title_receive, 'artist' : artist_receive})
         
         minus_like = song[weatherBtn_receive] -1 
@@ -135,10 +143,12 @@ def like_btn():
         db.users_songs.insert_one(users_songs_doc)     
         db.users_songs.update_one({'username' : username_receive}, {'$set' : {weatherBtn_receive : True}})
 
+
     # 사용자가 곡에 좋아요를 처음 누른 게 아닐때
     else:
         # 사용자가 좋아요를 눌렀을 때 (현재 버튼이 좋아요를 누른 상태가 아닐 때)
         if users_songs[weatherBtn_receive] == False:
+
             db.users_songs.update_one({'username' : username_receive, 'title' : title_receive, 'artist' : artist_receive}, {'$set' : {weatherBtn_receive : True}})
         
         # 사용자가 좋아요를 취소했을 때 (현재 버튼이 좋아요를 누른 상태일 때)
@@ -146,6 +156,7 @@ def like_btn():
             db.users_songs.update_one({'username' : username_receive, 'title' : title_receive, 'artist' : artist_receive}, {'$set' : {weatherBtn_receive : False}})
         
     return jsonify({'msg' : "날씨 버튼 좋아요 +1 완료!"})
+
 
 
 
@@ -160,7 +171,8 @@ def login_home():
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("sunny.html")
+
 
 
 if __name__ == "__main__":

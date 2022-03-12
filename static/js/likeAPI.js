@@ -10,12 +10,12 @@
 $(function () {
   $("#Sunny-btn").click(function () {
     let weatherLikeBtn = "Sunny";
-    console.log($("#Sunny-btn").css("border-color"));
+    console.log($("#Sunny-btn").css("font-size"));
 
     // 만약 버튼 css가 폰트 사이즈 16이면 -> 현재 사용자가 좋아요 안 누른 상태이므로
     // 서버에 현재 버튼 상태 false로 전달
     // 아니면, true로 전달
-    if ($("#Sunny-btn").css("border-color") == "rgb(255, 255, 255)") {
+    if ($("#Sunny-btn").css("font-size") == "16px") {
       is_weatherLike = false;
     } else {
       is_weatherLike = true;
@@ -107,8 +107,9 @@ $(function () {
 
 function likeBtnSong(weatherLikeBtn, is_weatherLike) {
   let title = $("#song-title").text();
-  let artist = $(".music-box-artist").text();
+  let artist = $(".artist").text();
   let username = $(".username").text();
+  console.log(title, artist);
 
   $.ajax({
     type: "POST",
@@ -133,10 +134,15 @@ function likeBtnSong(weatherLikeBtn, is_weatherLike) {
 
 /* 좋아요 API (GET) 클라이언트 */
 
+/* -----------------API----------------------- */
+
+/* 좋아요 API (GET) 클라이언트 */
+
 function showLike() {
   let title = $("#song-title").text();
-  let artist = $(".music-box-artist").text();
+  let artist = $(".artist").text();
   let username = $(".username").text();
+  console.log(title, artist);
 
   $.ajax({
     type: "GET",
@@ -179,10 +185,11 @@ function showLike() {
       // 날씨별 사용자가 버튼 눌렀는지, 안 눌렀는지에 따라 html,css 다르게
       if (is_SunnyLike == true) {
         // 맑음 버튼 사용자가 누른 상태일 때 디자인 : font-size : 40
-        $("#Sunny-btn").css({ "border-color": "rgb(0,0,0)" });
+
+        $("#Sunny-btn").css({ "font-size": "40px" });
       } else {
-        $("#Sunny-btn").css({ "border-color": "rgb(255,255,255)" });
         // 맑음 버튼 사용자가 안 누른? 상태일 때 디자인 (원래 디자인) : font-size : 16
+        $("#Sunny-btn").css({ "font-size": "16px" });
       }
       // 이렇게 4개 버튼 디자인
 
@@ -219,10 +226,27 @@ function showRank(weatherMoveBtn) {
       let song_rank = response["songs_rank"];
 
       // i = 0~9까지 1위부터 10위
-      for (let i = 0; i < 10; i++) {
+      for (let i = 1; i < 11; i++) {
         let title = song_rank[i]["title"];
         let artist = song_rank[i]["artist"];
+
+        let temp_html = `<div class="artist${i}">${artist}
+                        
+        
+        `;
       }
     },
   });
+}
+
+for (let i = 1; i < 3; i++) {
+  let artist = document.querySelector(`.artist${i}`);
+
+  // let artist = $(`.artist${i}`).text();
+  console.log(artist);
+  console.log(`".artist${i}"`);
+}
+
+function onclickHandler(e) {
+  console.log("event : ", e.target);
 }
