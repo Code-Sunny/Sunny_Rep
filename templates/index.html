@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -36,7 +36,7 @@
       rel="stylesheet"
     />
 
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/likeAPI.js') }}"></script>
 
     <title>title</title>
     <style>
@@ -72,6 +72,14 @@
       .btn02 {
         margin-left: 10px;
       }
+      .hidden {
+        display : none;
+      }
+
+      .orange{
+        background-color: orange;
+      }
+
     </style>
     <script>
       function openclose() {
@@ -84,6 +92,8 @@
           $("#btn-posting-box").text("닫기");
         }
       }
+
+
 
       // function weather() {
       //     $.ajax({
@@ -136,12 +146,17 @@
   </head>
 
   <body>
+    <span class="username">KSH</span>
     <div class="wrap">
       <div class="weather">
         <h1 class="main-text">오늘의 날씨에</h1>
         <h1 class="main-text">어울리는 음악이 뭐야?</h1>
         <p class="local">위치 : <span id="now_local">서울</span></p>
         <p class="temperature">기온 : <span id="now_temperature">16°C</span></p>
+        <button class="Sunny-moveBtn">Sunny</button>
+        <button class="Cloudy-moveBtn">Cloudy</button>
+        <button class="Rainy-moveBtn">Rainy</button>
+        <button class="Snowy-moveBtn">Snowy</button>
         <p class="btn00">
           <a
             onclick="openclose()"
@@ -161,8 +176,9 @@
             src="https://mountainholic.com/data/file/gallery/1794564802_GrmVxJz4_4f69963f2aec263bf84140cbb0de9d5dd61fc60a.png"
             alt="Card image cap"
           />
-          <p id="song-title" class="music-box-title">에잇</p>
-          <p class="music-box-artist">가수 이름</p>
+          <!-- 좋아요 버튼 누를 시 서버에 곡 정보(이름) 보내기 위해 선택할 태그 (TYPE : POST)-->
+          <p id="song-title" class="music-box-title">첫사랑</p>
+          <p class="music-box-artist">10</p>
           <span>오늘의 날씨에는 이런 노래,</span>
           <span class="today-wether-icon">
             <a href="https://www.naver.com/" class="wether-icon-01">좋아요</a>
@@ -194,11 +210,18 @@
             >다른 노래 추천</a
           >
         </span>
-  
-        <input id="Sunny-btn" type="button" value="Sunny"></input>
-        <input id="Cloudy-btn" type="button" value="Cloudy"></input>
-        <input id="Rainy-btn" type="button" value="Rainy"></input>
-        <input id="Snowy-btn" type="button" value="Snowy"></input>
+
+        <!-- 좋아요 버튼 누를 시 서버에 어떤 버튼을 눌렀는지 정보를 보내기 위해 선택할 태그 (TYPE : POST) -->
+
+          <input id="Sunny-btn" type="button" value="Sunny"></input>
+          <span class="Sunny-btn__like">0</span>
+          <input id="Cloudy-btn" type="button" value="Cloudy"></input>
+          <span class="Cloudy-btn__like">0</span>
+          <input id="Rainy-btn" type="button" value="Rainy"></input>
+          <span class="Rainy-btn__like">0</span>
+          <input id="Snowy-btn" type="button" value="Snowy"></input>
+          <span class="Snowy-btn__like">0</span>
+
       </div>
     </div>
   </body>
