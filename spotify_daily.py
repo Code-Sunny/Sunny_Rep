@@ -5,7 +5,7 @@ load_dotenv()
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
-from youtube import get_youtube
+from youtube_hyunsug import get_youtube
 
 client_id = os.getenv("SPOTIFY_CLIENT_ID")
 client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
