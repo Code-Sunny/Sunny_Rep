@@ -87,7 +87,7 @@ def join():
     # form에서 전송된 username과 password, password2
     if "username" in session:
         return redirect("/", 403)
-    data = request.form
+    data = request.body.json()
     username = data["username"]
     password = data["password"]
     password2 = data["password2"]
@@ -96,11 +96,11 @@ def join():
     if existing_user:
         # db에 이미 존재하는 username일 경우
         # return jsonify({"ok": False, "err": "이미 존재하는 사용자명입니다."})
-        return redirect("/j", 400, {"error": "이미 존재하는 사용자명입니다."})
+        return redirect("/join", 400, {"error": "이미 존재하는 사용자명입니다."})
     elif password != password2:
         # db에 존재하지 않으나 입력된 암호 둘이 동일하지 않을 경우
         # return jsonify({"ok": False, "err": "패스워드가 동일하지 않습니다."})
-        return redirect("/j", 400, {"error": "패스워드가 동일하지 않습니다."})
+        return redirect("/join", 400, {"error": "패스워드가 동일하지 않습니다."})
     else:
         # db에 존재하지 않고, 암호가 일치 할 때
         # password를 암호화한다. hashpw(hashing 할 문자열, hashing 횟수)
@@ -117,7 +117,7 @@ def login():
     if "username" in session:
         if session["username"]:
             return redirect("/", 403)
-    data = request.form
+    data = request.body.json()
     username = data["username"]
     password = data["password"]
     # db에서 username으로 검색
