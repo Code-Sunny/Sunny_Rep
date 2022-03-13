@@ -68,8 +68,8 @@ db = client.sunny
 #     }
 # }
 
-db.create_collection("users")
-db.create_collection("songs")
+# db.create_collection("users")
+# db.create_collection("songs")
 
 # db.command({"collMod": "Users", "validator": UserSchema})
 # db.command({"collMod": "Songs", "validator": SongSchema})

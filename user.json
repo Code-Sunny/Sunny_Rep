@@ -1,0 +1,23 @@
+{
+    "_id": "ObjectId",
+    "username": "username",
+    "password": "hashed_password",
+    "songs_liked": [
+        {
+            "song_id": {
+                "sunny": true,
+                "snowy": true,
+                "rainy": true,
+                "cloudy": true
+            }
+        },
+        {
+            "song_id2": {
+                "sunny": true,
+                "snowy": true,
+                "rainy": true,
+                "cloudy": true
+            }
+        }
+    ]
+}

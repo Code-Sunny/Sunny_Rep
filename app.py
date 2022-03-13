@@ -16,7 +16,7 @@ FLASK_SECRET = os.getenv("APP_SECRET")
 
 
 # flask server setting
-from flask import Flask, jsonify, redirect, render_template, request, session
+from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
 # from api import api
 import requests
@@ -49,11 +49,10 @@ def main():
 
 @app.route("/main/search", methods=["GET"])
 def search():
-    query = request.args.get()
-    from spotify import get_songs
-
-    songs = get_songs(query["query_type"], query["query"])
-    return render_template("serach.html", {"result": songs})
+    # query = request.args.get()
+    # from spotify import get_songs
+    # songs = get_songs(query["query_type"], query["query"])
+    return render_template("serach.html", {"result": []})
 
 
 @app.route("/get-weather", methods=["POST"])
@@ -96,11 +95,11 @@ def join():
     if existing_user:
         # db에 이미 존재하는 username일 경우
         # return jsonify({"ok": False, "err": "이미 존재하는 사용자명입니다."})
-        return redirect("/join", 400, {"error": "이미 존재하는 사용자명입니다."})
+        return redirect(url_for("/join", msg={"error": "이미 존재하는 사용자명입니다."}))
     elif password != password2:
         # db에 존재하지 않으나 입력된 암호 둘이 동일하지 않을 경우
         # return jsonify({"ok": False, "err": "패스워드가 동일하지 않습니다."})
-        return redirect("/join", 400, {"error": "패스워드가 동일하지 않습니다."})
+        return redirect(url_for("/join", msg={"error": "패스워드가 동일하지 않습니다."}))
     else:
         # db에 존재하지 않고, 암호가 일치 할 때
         # password를 암호화한다. hashpw(hashing 할 문자열, hashing 횟수)
@@ -109,14 +108,14 @@ def join():
         # db에 저장할 object 생성
         doc = {"username": username, "password": hashed_password}
         db.users.insert_one(doc)
-        return redirect("/", 201)
+        return redirect(url_for("/"))
 
 
 @app.route("/login", methods=["POST"])
 def login():
     if "username" in session:
         if session["username"]:
-            return redirect("/", 403)
+            return redirect(url_for("/"), 403)
     data = request.body.json()
     username = data["username"]
     password = data["password"]
@@ -125,32 +124,32 @@ def login():
     if not user:
         # 존재하지 않는 user
         # return jsonify({"ok": False, "err": "존재하지 않는 사용자명입니다."})
-        return redirect("/main", 400, {"error": "존재하지 않는 사용자명입니다."})
+        return redirect(url_for("/main", msg={"error": "존재하지 않는 사용자명입니다."}))
     elif not checkpw(password.encode("utf-8"), user["password"]):
         # 입력된 password를 hash했을 때 저장된, hashing 된 password와 일치하지 않을 때
         # return jsonify({"ok": False, "err": "잘못된 비밀번호입니다."})
-        return redirect("/main", 400, {"error": "비밀번호가 일치하지 않습니다."})
+        return redirect(url_for("/main", msg={"error": "비밀번호가 일치하지 않습니다."}))
     else:
         session["username"] = username
         # 로그인을 완료하고 첫 페이지로 돌아간다.
-        return redirect("/", 200)
+        return redirect(url_for("/"), 200)
 
 
 @app.route("/logout", methods=["GET"])
 def logout():
     if not session["username"]:
-        return redirect("/", 403)
+        return redirect(url_for("/"), 403)
     else:
         # session을 제거한다.
         session.clear()
-        return redirect("/")
+        return redirect(url_for("/"))
 
 
 # @app.route("/user/<userId>")로 하는 방법도 괜찮을 것 같다.
 @app.route("/user/my-profile")
 def profile():
     if not "username" in session:
-        return redirect("/", 403)
+        return redirect(url_for("/"), 403)
     else:
         return render_template("/profile", {"username": session["username"]})
 

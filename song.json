@@ -1,0 +1,32 @@
+{
+    "_id": "ObjectId('asdfasdfs')",
+    "title": "Song_title",
+    "track_id": "track_id",
+    "artist": "artist_name",
+    "likes": {
+        "sunny": 0,
+        "snowy": 1,
+        "rainy": 2,
+        "cloudy": 5
+    },
+    "likedUsers": [
+        {
+            "userid": "userid",
+            "likes": {
+                "sunny": true,
+                "snowy": true,
+                "rainy": true,
+                "cloudy": true
+            }
+        },
+        {
+            "userid": "userid",
+            "likes": {
+                "sunny": true,
+                "snowy": true,
+                "rainy": true,
+                "cloudy": true
+            }
+        }
+    ]
+}
